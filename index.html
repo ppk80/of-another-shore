@@ -13,7 +13,8 @@
 			--text-color: #998e79; /* Muted taupe, like weathered driftwood, gentle and earthy */
 			--link-color: #3a8fb7; /* Ocean blue */
 			--link-hover-color: #ffa07a; /* Soft coral, evoking sunset tones */
-			--heading-color: #b58191; /* Dusty rose, soft and nostalgic, like seashells along the shore */
+			--heading-color-start: #b58191; /* Dusty rose, soft and nostalgic, like seashells along the shore */
+			--heading-color-end: #2c6975; /* Muted teal, like the ocean merging with the sky */
         }
 
         body {
@@ -35,9 +36,11 @@
 
         h1 {
             font-family: "Baloo 2", cursive;
-            color: var(--heading-color);
             font-size: 3rem;
             margin-bottom: 1.5rem;
+            background: linear-gradient(to right, var(--heading-color-start), var(--heading-color-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         p {
@@ -71,7 +74,7 @@
         <p>before we're born?</p>
         <div class="text">
             <a href="https://ppk80.github.io/threefloorhome.html">three floor home</a>
-			<a href="onanothershore.html">on another shore</a>
+            <a href="onanothershore.html">on another shore</a>
             <a href="https://ppk80.github.io/fourbedroomgarden.html">four bedroom garden</a>
             <a href="https://ppk80.github.io/fivehorizonintersection.html">five horizon intersection</a>
         </div>
