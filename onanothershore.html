@@ -15,88 +15,93 @@
 			--small-text-color: #8f837a; /* Soft greige, understated and organic */
 		}
 
-        body {
-            background-color: var(--bg-color);
-            font-family: "Exo 2", sans-serif;
-            color: var(--text-color);
-            padding: 20px;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+ body {
+    background-color: var(--bg-color);
+    font-family: "Exo 2", sans-serif;
+    color: var(--text-color);
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+}
 
-        .poem {
-            width: 33%;
-            margin: 0;
-            line-height: 1.3;
-            padding: 20px;
-            box-sizing: border-box;
-            position: relative; /* To position .text-75 absolutely inside this container */
-        }
+.poem {
+    aspect-ratio: 15/16; /* Maintain aspect ratio */
+    width: 80vw; /* Adjust width relative to viewport */
+    max-width: 500px; /* Maximum width on larger screens */
+    max-height: 80vh; /* Ensure it doesn't overflow the screen */
+    margin: 0;
+    line-height: 1.3;
+    padding: 20px;
+    box-sizing: border-box;
+    position: relative; /* Positioning for .text-75 */
+    overflow: auto; /* Scroll in case the text overflows */
+}
 
-        .italic {
-            font-style: italic;
-        }
+.italic {
+    font-style: italic;
+}
 
-        .cyan {
-            color: var(--link-color);
-            text-decoration: none;
-        }
+.cyan {
+    color: var(--link-color);
+    text-decoration: none;
+}
 
-        .small {
-            font-size: 0.8rem;
-            color: var(--small-text-color); /* Muted taupe */
-        }
+.small {
+    font-size: 0.8rem;
+    color: var(--small-text-color); /* Muted taupe */
+}
 
-        .farewell {
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--highlight-color); /* Dusty rose for emphasis */
-        }
-		
-        .free-pitch {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--highlight-color); /* Dusty rose for contrast */
-        }
-		
-		.oriental {
-			color: #c21f1f;
-		}
-		
-        /* Flexbox for left-right alignment */
-        .align-left-right {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            position: relative;
-        }
+.farewell {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--highlight-color); /* Dusty rose for emphasis */
+}
 
-        .left-text {
-            text-align: left;
-            flex: 1;
-        }
+.free-pitch {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--highlight-color); /* Dusty rose for contrast */
+}
 
-        .right-text {
-            text-align: right;
-            flex: 1;
-        }
+.oriental {
+    color: #c21f1f;
+}
 
-        .center-text {
-            text-align: center;
-            width: 100%;
-        }
+.align-left-right {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    position: relative;
+}
 
-        .text-75 {
-            position: absolute;
-            left: 75%; /* Position the text at 75% of the container's width */
-            transform: translateX(-50%); /* Center the text on 75% */
-            white-space: nowrap; /* Prevents the text from breaking into a new line */
-            max-width: 25%; /* Ensure it doesn't exceed the width of the container */
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
+.left-text {
+    text-align: left;
+    flex: 1;
+}
+
+.right-text {
+    text-align: right;
+    flex: 1;
+}
+
+.center-text {
+    text-align: center;
+    width: 100%;
+}
+
+.text-75 {
+    position: absolute;
+    left: 75%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    max-width: 25%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
     </style>
 </head>
 <body>
