@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>on another shore</title>
+    <style>
+        /* Colors inspired by the dream-like beach theme */
+        :root {
+            --bg-color: #f4e2d8; /* Sandy beige */
+            --text-color: #4b5358; /* Soft muted charcoal, like driftwood */
+            --link-color: #3a8fb7; /* Ocean blue */
+            --link-hover-color: #ffa07a; /* Soft coral, evoking sunset tones */
+            --highlight-color: #b58191; /* Dusty rose, soft and nostalgic */
+            --small-text-color: #998e79; /* Muted taupe */
+        }
+
+        body {
+            background-color: var(--bg-color);
+            font-family: "Exo 2", sans-serif;
+            color: var(--text-color);
+            padding: 20px;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .poem {
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+            text-align: center; /* Center the text */
+        }
+
+        .italic {
+            font-style: italic;
+        }
+
+        .cyan {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+
+        .cyan:hover {
+            color: var(--link-hover-color);
+        }
+
+        .free-pitch {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--highlight-color); /* Dusty rose for contrast */
+        }
+
+        .indented {
+            margin-left: 50px;
+        }
+
+        .small {
+            font-size: 0.8rem;
+            color: var(--small-text-color); /* Muted taupe */
+        }
+
+        .farewell {
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--highlight-color); /* Dusty rose for emphasis */
+        }
+
+        .tab-space {
+            display: inline-block;
+            width: 2em; /* Adjust the width to control the tab size */
+        }
+    </style>
+</head>
+<body>
+    <div class="poem">
+        <p>room salmon <span class="italic">Thunnus orientalis</span></p>
+        <p><span class="tab-space"></span><a href="#" class="cyan">&lt;a cyan</a></p>
+        <p>pitch: <span class="free-pitch">free</span><span class="tab-space"></span> ; “ ”</p>
+        <p><span class="tab-space"></span>Polyvinyl forget</p>
+        <p>opening <span class="tab-space"></span><span class="italic">déjà-jamais rêvé</span></p>
+        <p><span class="tab-space"></span>on another</p>
+        <p class="indented">shore <span class="tab-space"></span>it's not-any season</p>
+        <p><span class="tab-space"></span>a <span class="italic">p(recip[i)ce]</span></p>
+        <p>antediluvian <span class="tab-space"></span><span class="small">no really? 再会</span></p>
+        <p class="farewell"><span class="tab-space"></span>fare|well</p>
+        <p>when <span class="italic">uláyhon nga again</span><span class="tab-space"></span> wheren’t</p>
+        <p><span class="tab-space"></span>I’ll see</p>
+        <p><span class="tab-space"></span><span class="tab-space"></span>a new</p>
+    </div>
+</body>
+</html>
