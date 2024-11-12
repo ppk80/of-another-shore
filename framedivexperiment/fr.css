@@ -1,0 +1,12 @@
+/* Base styling for the frameDiv */
+
+body {
+  margin: 0; /* Removes any default body margin */
+}
+
+#frameDiv {	
+  width: 564px;    /* Base width */
+  height: 698px;   /* Base height */
+  background-image: url("cup.jpg");  /* Optional background color for visibility */
+  background-size: 100% 100%;
+}
