@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>night bus</title>
+    <style>
+        /* Basic reset for margin and padding */
+        body, h1, p {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Styling for the page background and font */
+        body {
+            font-family: "Exo 2", sans-serif;
+            background-color: #d5c3e8;
+            color: #eff1fe;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Center align the container and text */
+        .poetry-container {
+            text-align: center;
+            line-height: 1.6;
+            color: #eff1fe;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #353e4d;
+        }
+
+        .poem {
+            font-size: 1.2em;
+            margin-bottom: 40px;
+
+        }
+
+        /* Styling for individual stanzas */
+        .stanza {
+            margin: 40px 0;
+        }
+		
+		.music-player {
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #d5c3e8; /* Matches the background overlay */
+    border-radius: 8px;
+}
+
+.section {
+    padding: 10px;
+}
+
+.column-container {
+    display: flex;
+    gap: 20px; /* Space between columns */
+    justify-content: space-between;
+}
+
+.column {
+    flex: 1;
+    line-height: 1.6;
+}
+
+    </style>
+</head>
+<body>
+
+    <div class="poetry-container">
+        <h1>now</h1>
+		<div class="music-player">
+    <audio controls>
+        <source src="Now.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+</div>
+   
+    </div>
+</body>
+</html>
