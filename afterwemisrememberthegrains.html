@@ -51,6 +51,41 @@
             margin: 20px 0;
             font-size: 1.5em;
         }		
+		
+				/* Tooltip container */
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black; /* Optional: adds a dotted underline */
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+    visibility: hidden; /* Hidden by default */
+    width: 120px; /* Set a width for the tooltip */
+    background-color: #555; /* Tooltip background color */
+    color: #fff; /* Tooltip text color */
+    text-align: center;
+    padding: 5px 0; /* Padding inside the tooltip */
+    border-radius: 6px; /* Rounded corners */
+    
+    /* Positioning the tooltip */
+    position: absolute;
+    z-index: 1;
+    bottom: 125%; /* Position above the tooltip container */
+    left: 50%; /* Center the tooltip */
+    margin-left: -60px; /* Adjust left margin to center */
+    
+    /* Fade-in effect */
+    opacity: 0; 
+    transition: opacity 0.3s;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+    visibility: visible; /* Show on hover */
+    opacity: 1; /* Fade in effect */
+}
     </style>
 </head>
 <body>
@@ -104,7 +139,7 @@
             <p class="divider">·</p>
 
             <p class="stanza">
-                sulód : 面 : another : shore
+                <p class="tooltip">sulód<span class="tooltiptext">inside, to put inside, to go inside</span></p> : <p class="tooltip">面<span class="tooltiptext">mask, face, features, surface</span></p> : another : shore
             </p>
         </div>
     </div>
