@@ -1,0 +1,15 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: url('fhiback.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+img {
+    position: absolute;
+    width: 100vw; /* Adjust image size as needed */
+    height: auto;
+    cursor: grab;
+}

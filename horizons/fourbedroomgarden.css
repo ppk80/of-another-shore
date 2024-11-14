@@ -1,0 +1,14 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: url('fourbedroomgardenback.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+img {
+    position: absolute;
+    width: 30%; /* Adjust image size as needed */
+    height: auto;
+    cursor: grab;
+}
