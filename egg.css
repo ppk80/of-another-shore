@@ -1,0 +1,109 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    font-family: "Exo 2", sans-serif;
+    background-color: #301520;
+    color: #eff1fe; /* text color */
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 1), 2px 2px 5px rgba(0.1, 0.1, 0, 1), 2px 2px 20px rgba(0.1, 0.1, 0, 1); /* Adjust shadow as needed */
+
+}
+
+
+.section {
+    height: 100vh;
+    width: 100%;
+    display: none; /* Hide all sections initially */
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    position: relative;
+    color: #eff1fe; /* Set the text color */
+}
+
+.section:first-child {
+    display: flex; /* Show the first section by default */
+}
+
+
+.section-image {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 100px;
+    height: auto;
+}
+
+.nav-btn {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #323;
+    color: white;
+    border: none;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+#leftBtn {
+    left: 20px;
+}
+
+#rightBtn {
+    right: 20px;
+}
+
+        .section-1 {
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/d/da/Opening_of_South_Atlantic_126_Ma.png');
+			    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+        }
+
+        .section-2 {
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/d/d6/Geology_of_Asia_175Ma.jpg');
+			    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+        }
+
+        .section-3 {
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Pangaea_200Ma.jpg/800px-Pangaea_200Ma.jpg?20191231100310');
+			    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+        }
+
+        .section-4 {
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Panthalassa_250Ma.jpg/800px-Panthalassa_250Ma.jpg?20200202141712');
+			    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+        }
+
+        .section-5 {
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Geology_of_Asia_400Ma.jpg/480px-Geology_of_Asia_400Ma.jpg');
+			    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+        }
+
+        .section-6 {
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Gondwana_420_Ma.png/612px-Gondwana_420_Ma.png?20180303080742');
+			    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+        }
+
+        .section-7 {
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/5/5a/Rodinia_900Ma.jpg');
+			    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+        }

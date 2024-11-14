@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dungan</title>
+    <style>
+        /* Basic reset for margin and padding */
+        body, h1, p {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Styling for the page background and font */
+        body {
+            font-family: "Exo 2", sans-serif;
+            background-color: #301520;
+            color: #eff1fe;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Center align the container and text */
+        .poetry-container {
+            text-align: center;
+            line-height: 1.6;
+            color: #eff1fe;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #eff1fe;
+        }
+
+        .poem {
+            font-size: 1.2em;
+            margin-bottom: 40px;
+
+        }
+
+        /* Styling for individual stanzas */
+        .stanza {
+            margin: 40px 0;
+        }
+		
+		/* Tooltip container */
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black; /* Optional: adds a dotted underline */
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+    visibility: hidden; /* Hidden by default */
+    width: 120px; /* Set a width for the tooltip */
+    background-color: #555; /* Tooltip background color */
+    color: #fff; /* Tooltip text color */
+    text-align: center;
+    padding: 5px 0; /* Padding inside the tooltip */
+    border-radius: 6px; /* Rounded corners */
+    
+    /* Positioning the tooltip */
+    position: absolute;
+    z-index: 1;
+    bottom: 125%; /* Position above the tooltip container */
+    left: 50%; /* Center the tooltip */
+    margin-left: -60px; /* Adjust left margin to center */
+    
+    /* Fade-in effect */
+    opacity: 0; 
+    transition: opacity 0.3s;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+    visibility: visible; /* Show on hover */
+    opacity: 1; /* Fade in effect */
+}
+
+    </style>
+</head>
+<body>
+    <div class="poetry-container">
+        <h1>dungan</h1>
+        <div class="poem">
+            <p class="stanza">
+                I was always given ginger to hide <br>
+                inside my clothes. It’s to prevent <br>
+                the effects of tuyáw. Many plants <br>
+                resemble human features. When many <br>
+                people give you a lot of attention, <br>
+                you get sick. If the dungán is strong <br>
+                then you’ll be fine. Lola was distraught <br>
+                when I would not get <br>
+                well from diarrhea and full <br>
+                body rashes. After the 1990 Luzon <br>
+                earthquake, I recovered.
+            </p>
+            
+            <p class="stanza">
+                When the body sleeps, the <br>
+                dungán leaves the body. <br>
+                If it’s hungry enough <br>
+                it enters the rice <br>
+                cooker and gets stuck there. <br>
+                I have left open several <br>
+                rice cookers. One by the TV <br>
+                we no longer need, one <br>
+                at the altar, one at the front <br>
+                of the modem, one on top <br>
+                of a placard that says never <br>
+                again, one by the atlas <br>
+                of the night sky.
+            </p>
+            
+            <p class="stanza">
+                <p class="tooltip">Naga dungán-dúngan <br>
+                and mga kalág natun. <br><span class="tooltiptext">Our souls go together</span></p><br>
+                In death or illness, they’re said <br>
+                to unravel. I have more <br>
+                of these: one in video <br>
+                essay, one on Facebook, <p class="tooltip">夜<span class="tooltiptext">night</span></p>, <br>
+                <p class="tooltip">人魂<span class="tooltiptext">hitogami</span></p>, one for each <br>
+                song burned on a CD, one as <br>
+                manager, one for the left <br>
+                and right of the stereo channel, <br>
+                one neurogender, one <br>
+                agí, one <p class="tooltip">Xジェンダー<span class="tooltiptext">X-gender</span></p>, <br>
+                one for my parents, none for my great <br>
+                grandparents, one left <br>
+                behind in the 2011 <br>
+                house, one haunting <br>
+                a diary if I wrote any, one <br>
+                I hid away from the gods.
+            </p>
+        </div>
+    </div>
+</body>
+</html>
