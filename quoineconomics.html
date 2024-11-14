@@ -47,15 +47,50 @@
         .stanza {
             margin: 10px 0;
         }
+		
+		/* Tooltip container */
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black; /* Optional: adds a dotted underline */
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+    visibility: hidden; /* Hidden by default */
+    width: 120px; /* Set a width for the tooltip */
+    background-color: #555; /* Tooltip background color */
+    color: #fff; /* Tooltip text color */
+    text-align: center;
+    padding: 5px 0; /* Padding inside the tooltip */
+    border-radius: 6px; /* Rounded corners */
+    
+    /* Positioning the tooltip */
+    position: absolute;
+    z-index: 1;
+    bottom: 125%; /* Position above the tooltip container */
+    left: 50%; /* Center the tooltip */
+    margin-left: -60px; /* Adjust left margin to center */
+    
+    /* Fade-in effect */
+    opacity: 0; 
+    transition: opacity 0.3s;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+    visibility: visible; /* Show on hover */
+    opacity: 1; /* Fade in effect */
+}
     </style>
 </head>
 <body>
     <div class="poetry-container">
         <h1>quoin (economics)</h1>
         <div class="poem">
-            <p class="stanza">tipaló : tuktók<bR>
+            <p class="stanza"><span class="tooltip">tipaló<span class="tooltiptext">to trip, fumble</span></span> : <span class="tooltip">tuktók<span class="tooltiptext">the summit, the top</span></span><bR>
 currency, the real’s ghost<bR>
-日々のあわ<bR>
+<span class="tooltip">日々のあわ<span class="tooltiptext">everyday/daily bubbles</span></span><bR>
 </p>
         </div>
     </div>
