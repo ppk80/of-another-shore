@@ -14,5 +14,4 @@ body {
 div {
 	width: auto;
 	height: auto;
-	display: inline-block; /* Adjusts to fit content closely */
 }

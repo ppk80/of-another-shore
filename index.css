@@ -1,0 +1,73 @@
+/* Root colors for the dream-like beach theme */
+:root {
+    --bg-color: #f4e2d8; /* Sandy beige, reminiscent of a soft, sunlit beach */
+    --text-color: #998e79; /* Muted taupe, like weathered driftwood, gentle and earthy */
+    --link-color: #3a8fb7; /* Ocean blue */
+    --link-hover-color: #ffa07a; /* Soft coral, evoking sunset tones */
+    --heading-color-start: #b58191; /* Dusty rose, soft and nostalgic, like seashells along the shore */
+    --heading-color-end: #2c6975; /* Muted teal, like the ocean merging with the sky */
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: "Quicksand", sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.container {
+    text-align: center;
+    padding: 20px;
+}
+
+h1 {
+    font-family: "Baloo 2", cursive;
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(to right, var(--heading-color-start), var(--heading-color-end));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+p {
+    margin: 0.5rem 0;
+    font-size: 1.25rem;
+}
+
+/* Styling for each item container */
+.item {
+    margin: 1.5rem 0;
+}
+
+
+/* Styling for main title links */
+.text a.title-link {
+    font-family: "Nova Round", sans-serif;
+    text-decoration: none;
+    color: var(--link-color);
+    font-size: 1.3rem;
+    display: block;
+    margin: 5px 0;
+}
+
+.text a.title-link:hover {
+    color: var(--link-hover-color);
+}
+
+/* Specific styling for notes links */
+.text a.notes-link {
+    color: #c07b7b; /* Soft pinkish color for notes links */
+    font-size: 1rem; /* Slightly smaller font size */
+    /* Adds spacing from the main title */
+    font-style: italic; /* Distinct italic style */
+}
+
+.text a.notes-link:hover {
+    color: #ffa07a; /* Coral hover color */
+}
+

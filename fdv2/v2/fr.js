@@ -15,13 +15,13 @@ function adjustFrameSize(frameDiv) {
 	scalingFactor = viewportWidth / divWidth;  
     frameDiv.style.width = `${viewportWidth}px`;
     frameDiv.style.height = `${(divHeight * viewportWidth) / divWidth}px`;
-	adjustOtherHDivs(scalingFactor);
+	adjustOtherHDivs(scalingFactor, divWidth, divHeight);
 	
   } else {
 	scalingFactor = viewportHeight / divHeight;  
     frameDiv.style.height = `${viewportHeight}px`;
     frameDiv.style.width = `${(divWidth * viewportHeight) / divHeight}px`;
-	adjustOtherHDivs(scalingFactor);
+	adjustOtherHDivs(scalingFactor, divWidth, divHeight);
   }
 
   // Center frameDiv at 50% of viewport width and height
@@ -31,11 +31,7 @@ function adjustFrameSize(frameDiv) {
   frameDiv.style.transform = 'translate(-50%, -50%)'; // Center around the midpoint
 }
 
-function adjustOtherHDivs(scalingFactor) {
-  // Get viewport dimensions
-  const viewportWidth = window.innerWidth;
-  const viewportHeight = window.innerHeight;
-
+function adjustOtherHDivs(scalingFactor, frameWidth, frameHeight) {
   // Select all elements with class 'h' except frameDiv
   const otherHDivs = document.querySelectorAll('.h:not(#frameDiv)');
 
@@ -43,6 +39,7 @@ function adjustOtherHDivs(scalingFactor) {
     const divWidth = div.offsetWidth;
     const divHeight = div.offsetHeight;
 
+    // Scale width and height of each .h div
     div.style.height = `${divHeight * scalingFactor}px`;
     div.style.width = `${divWidth * scalingFactor}px`;
 	
@@ -58,27 +55,16 @@ function adjustOtherHDivs(scalingFactor) {
       img.style.width = `${imgWidth * scalingFactor}px`;
       img.style.height = `${imgHeight * scalingFactor}px`;
     });
-  });
-}
 
-function initialPositioning() {
-  // Get viewport dimensions
-  const viewportWidth = window.innerWidth;
-  const viewportHeight = window.innerHeight;
-
-  // Select all elements with class 'h' except frameDiv
-  const otherHDivs = document.querySelectorAll('.h:not(#frameDiv)');
-
-  otherHDivs.forEach((div) => {
-    // Get offset values from the data attributes, assuming percentages
+    // Positioning based on offset percentages relative to frame dimensions
     const offsetXPercent = parseFloat(div.dataset.offsetX) || 0;
     const offsetYPercent = parseFloat(div.dataset.offsetY) || 0;
+    
+    // Calculate offsets based on frame dimensions
+    const offsetX = (frameWidth * offsetXPercent) / 100;
+    const offsetY = (frameHeight * offsetYPercent) / 100;
 
-    // Calculate offsets in pixels based on percentages of viewport dimensions
-    const offsetX = (viewportWidth * offsetXPercent) / 100;
-    const offsetY = (-viewportHeight * offsetYPercent) / 100;
-
-    // Center the div in the viewport and apply calculated percentage offsets
+    // Center the div within frameDiv and apply calculated percentage offsets
     div.style.position = 'absolute';
     div.style.left = '50%';
     div.style.top = '50%';
@@ -91,14 +77,11 @@ function initialPositioning() {
 window.addEventListener('load', () => {
   const frameDiv = document.getElementById('frameDiv');
   adjustFrameSize(frameDiv);
-  adjustOtherHDivs();
-  initialPositioning();
 });
 
 window.addEventListener('resize', () => {
   const frameDiv = document.getElementById('frameDiv');
   adjustFrameSize(frameDiv);
-  adjustOtherHDivs();
 });
 
 
