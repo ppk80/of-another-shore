@@ -38,7 +38,6 @@
         .poem {
             font-size: 1.2em;
             margin-bottom: 40px;
-
         }
 
         /* Styling for individual stanzas */
@@ -46,45 +45,46 @@
             margin: 40px 0;
         }
 		
-        .divider {
+        /* Divider image styling */
+        .divider img {
+            width: 400px; /* Adjust width as needed */
             margin: 20px 0;
-            font-size: 1.5em;
-        }		
+        }
 		
-				/* Tooltip container */
-.tooltip {
-    position: relative;
-    display: inline-block;
-    border-bottom: 1px dotted black; /* Optional: adds a dotted underline */
-}
+		/* Tooltip container */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            border-bottom: 1px dotted black; /* Optional: adds a dotted underline */
+        }
 
-/* Tooltip text */
-.tooltip .tooltiptext {
-    visibility: hidden; /* Hidden by default */
-    width: 120px; /* Set a width for the tooltip */
-    background-color: #555; /* Tooltip background color */
-    color: #fff; /* Tooltip text color */
-    text-align: center;
-    padding: 5px 0; /* Padding inside the tooltip */
-    border-radius: 6px; /* Rounded corners */
-    
-    /* Positioning the tooltip */
-    position: absolute;
-    z-index: 1;
-    bottom: 125%; /* Position above the tooltip container */
-    left: 50%; /* Center the tooltip */
-    margin-left: -60px; /* Adjust left margin to center */
-    
-    /* Fade-in effect */
-    opacity: 0; 
-    transition: opacity 0.3s;
-}
+        /* Tooltip text */
+        .tooltip .tooltiptext {
+            visibility: hidden; /* Hidden by default */
+            width: 120px; /* Set a width for the tooltip */
+            background-color: #555; /* Tooltip background color */
+            color: #fff; /* Tooltip text color */
+            text-align: center;
+            padding: 5px 0; /* Padding inside the tooltip */
+            border-radius: 6px; /* Rounded corners */
 
-/* Show the tooltip text when you mouse over the tooltip container */
-.tooltip:hover .tooltiptext {
-    visibility: visible; /* Show on hover */
-    opacity: 1; /* Fade in effect */
-}
+            /* Positioning the tooltip */
+            position: absolute;
+            z-index: 1;
+            bottom: 125%; /* Position above the tooltip container */
+            left: 50%; /* Center the tooltip */
+            margin-left: -60px; /* Adjust left margin to center */
+
+            /* Fade-in effect */
+            opacity: 0; 
+            transition: opacity 0.3s;
+        }
+
+        /* Show the tooltip text when you mouse over the tooltip container */
+        .tooltip:hover .tooltiptext {
+            visibility: visible; /* Show on hover */
+            opacity: 1; /* Fade in effect */
+        }
     </style>
 </head>
 <body>
@@ -113,7 +113,10 @@
                 ever will be.
             </p>
 
-            <p class="divider">·</p>
+            <!-- Divider Image -->
+            <div class="divider">
+                <a href="https://epa.culturalcenter.gov.ph/3/82/2204/"><img src="img/jade.jpeg" alt="divider"></a>
+            </div>
 
             <p class="stanza">
                 The shore will soon disintegrate, and we now watch the cordilleras lift themselves up into an abstraction. 
@@ -135,7 +138,10 @@
                 I take a deep breath. Despite my body moving, I still look at you.
             </p>
 
-            <p class="divider">·</p>
+            <!-- Another Divider Image -->
+            <div class="divider">
+                <a href="https://turuta.jp/ceramics-story/archives/7222"><img src="img/rusun.jpeg" alt="divider"></a>
+            </div>
 
             <p class="stanza">
                 <p class="tooltip">sulód<span class="tooltiptext">inside, to put inside, to go inside</span></p> : <p class="tooltip">面<span class="tooltiptext">mask, face, features, surface</span></p> : another : shore
