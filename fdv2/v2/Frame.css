@@ -10,3 +10,8 @@ body {
   background-image: url("cup.jpg");  /* Optional background color for visibility */
   background-size: 100% 100%;
 }
+
+div {
+	width: fit-content;
+	height: fit-content;
+}
