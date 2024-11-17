@@ -7,9 +7,10 @@ body {
     background-size: cover;
 }
 
-img {
-    position: absolute;
-    width: 100vw; /* Adjust image size as needed */
-    height: auto;
-    cursor: grab;
+
+#frameDiv {	
+  width: 1000px;    /* Base width */
+  height: 513px;   /* Base height */
+  background-image: url("fivehorizonintersection.png");  /* Optional background color for visibility */
+  background-size: 100% 100%;
 }

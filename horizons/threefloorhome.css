@@ -13,3 +13,10 @@ img {
     width: auto;
     cursor: grab;
 }
+
+#frameDiv {	
+  width: 700px;    /* Base width */
+  height: 492px;   /* Base height */
+  background-image: url("threefloorhome.png");  /* Optional background color for visibility */
+  background-size: 100% 100%;
+}

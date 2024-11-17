@@ -1,14 +1,17 @@
+
 body {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background: url('fourbedroomgardenback.jpg') no-repeat center center fixed;
+    background: url('tfhBackground.jpg') no-repeat center center fixed;
     background-size: cover;
 }
 
-img {
-    position: absolute;
-    width: 30%; /* Adjust image size as needed */
-    height: auto;
-    cursor: grab;
+
+
+#frameDiv {	
+  width: 1000px;    /* Base width */
+  height: 562px;   /* Base height */
+  background-image: url("fourbedroomgarden.png");  /* Optional background color for visibility */
+  background-size: 100% 100%;
 }
