@@ -5,17 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>after we misremember the grains</title>
     <style>
-        /* Basic reset for margin and padding */
         body, h1, p {
             margin: 0;
             padding: 0;
         }
 
-        /* Styling for the page background and font */
         body {
             font-family: "Exo 2", sans-serif;
-            background-color: #c2bda7;
-            color: #eff1fe;
+            background: linear-gradient(135deg, #d5d0bb, #c2bda7, #b8b39d);
+            color: #612f3e;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -23,76 +21,114 @@
             padding: 20px;
         }
 
-        /* Center align the container and text */
         .poetry-container {
             text-align: center;
-            line-height: 1.6;
+            line-height: 1.8;
+            max-width: 800px;
+            padding: 40px;
+            background: linear-gradient(
+                to bottom,
+                rgba(194, 189, 167, 0.1),
+                rgba(194, 189, 167, 0.05)
+            );
             color: #612f3e;
+            position: relative;
+        }
+
+        .poetry-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            backdrop-filter: blur(3px);
+            z-index: -1;
         }
 
         h1 {
-            font-size: 2em;
-            margin-bottom: 20px;
+            font-size: 2.2em;
+            margin-bottom: 30px;
+            font-weight: 300;
+            letter-spacing: 0.05em;
+            color: #4d2632;
         }
 
         .poem {
             font-size: 1.2em;
-            margin-bottom: 40px;
+            line-height: 2;
+            font-weight: 300;
         }
 
-        /* Styling for individual stanzas */
         .stanza {
-            margin: 40px 0;
+            margin: 40px auto;
+            max-width: 600px;
+            transition: color 0.3s ease;
         }
-		
-        /* Divider image styling */
+
+        .stanza:hover {
+            color: #7a3b4d;
+        }
+
         .divider img {
-            width: 400px; /* Adjust width as needed */
-            margin: 20px 0;
+            width: 400px;
+            margin: 40px 0;
+            opacity: 0.9;
+            transition: opacity 0.3s ease;
         }
-		
-		/* Tooltip container */
-.tooltip {
-    position: relative;
-    display: inline-block;
-    background: linear-gradient(to top, rgba(36, 105, 162, 0.3) 0%, transparent 10%);
-    background-size: 200% 100%;
-    background-position: 100% 0;
-    transition: background-position 0.3s ease; /* Smooth transition */
-    color: inherit; /* Ensure text color matches context */
-}
 
-        /* Tooltip text */
+        .divider img:hover {
+            opacity: 1;
+        }
+
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            background: linear-gradient(to top, rgba(36, 105, 162, 0.2) 0%, transparent 10%);
+            background-size: 200% 100%;
+            background-position: 100% 0;
+            transition: background-position 0.3s ease;
+            padding: 0 4px;
+        }
+
+        .tooltip:hover {
+            background-position: 0 0;
+        }
+
         .tooltip .tooltiptext {
-            visibility: hidden; /* Hidden by default */
-            width: 120px; /* Set a width for the tooltip */
-            background-color: #31614c; /* Tooltip background color */
-            color: #ecd3ed; /* Tooltip text color */
+            visibility: hidden;
+            width: 120px;
+            background-color: rgba(49, 97, 76, 0.95);
+            color: #ecd3ed;
             text-align: center;
-            padding: 5px 0; /* Padding inside the tooltip */
-            border-radius: 6px; /* Rounded corners */
-
-            /* Positioning the tooltip */
+            padding: 8px;
+            border-radius: 6px;
             position: absolute;
             z-index: 1;
-            bottom: 125%; /* Position above the tooltip container */
-            left: 50%; /* Center the tooltip */
-            margin-left: -60px; /* Adjust left margin to center */
-
-            /* Fade-in effect */
-            opacity: 0; 
-            transition: opacity 0.3s;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s, visibility 0.3s;
         }
 
-        /* Show the tooltip text when you mouse over the tooltip container */
         .tooltip:hover .tooltiptext {
-            visibility: visible; /* Show on hover */
-            opacity: 1; /* Fade in effect */
+            visibility: visible;
+            opacity: 1;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .poetry-container {
+            animation: fadeIn 1s ease-out forwards;
         }
     </style>
 </head>
 <body>
- <div class="poetry-container">
+    <div class="poetry-container">
         <h1>after we misremember the grains</h1>
         <div class="poem">
             <p class="stanza">
@@ -102,7 +138,6 @@
                 the way it had <br>
                 maintained itself
             </p>
-
             <p class="stanza">
                 knowing that it all <br>
                 needed doing, and <br>
@@ -110,45 +145,32 @@
                 will need to do, <br>
                 we all said yes
             </p>
-
             <p class="stanza">
                 anyway, and so it will <br>
                 have been and <br>
                 ever will be.
             </p>
-
-            <!-- Divider Image -->
             <div class="divider">
-                <a href="https://epa.culturalcenter.gov.ph/3/82/2204/"><img src="img/jade.jpeg" alt="divider"></a>
+                <a href="https://epa.culturalcenter.gov.ph/3/82/2204/">
+                    <img src="img/jade.jpeg" alt="divider">
+                </a>
             </div>
-
             <p class="stanza">
-                The shore will soon disintegrate, and we now watch the cordilleras lift themselves up into an abstraction. 
-                Then, the sky color turns off. The clouds are shut down, one by one. 
-                We don’t belong here anymore, the same way we didn’t when we first arrived here.
-                We look at each other silently, already knowing what we’ve planned. 
-                The next stage is just behind the sea-curtain. 
-                We will have to forget each other, before we see each other again. 
-                When? Does it matter? 
-                Around us, the grass is redissolved into syllables. 
-                The moon, well, this place ran out of moons centuries ago.
-                What will we become? 
-                Is anything worth something without memory? 
-                Will we know each other still, knowing that we will change? 
-                Will I remember myself, harlequin?
+                The shore will soon disintegrate, and we now watch the cordilleras lift themselves up into an abstraction. Then, the sky color turns off. The clouds are shut down, one by one. We don't belong here anymore, the same way we didn't when we first arrived here. We look at each other silently, already knowing what we've planned. The next stage is just behind the sea-curtain. We will have to forget each other, before we see each other again. When? Does it matter? Around us, the grass is redissolved into syllables. The moon, well, this place ran out of moons centuries ago. What will we become? Is anything worth something without memory? Will we know each other still, knowing that we will change? Will I remember myself, harlequin?
             </p>
-
             <p class="stanza">
                 I take a deep breath. Despite my body moving, I still look at you.
             </p>
-
-            <!-- Another Divider Image -->
             <div class="divider">
-                <a href="https://turuta.jp/ceramics-story/archives/7222"><img src="img/rusun.jpeg" alt="divider"></a>
+                <a href="https://turuta.jp/ceramics-story/archives/7222">
+                    <img src="img/rusun.jpeg" alt="divider">
+                </a>
             </div>
-
             <p class="stanza">
-                <p class="tooltip">sulód<span class="tooltiptext">inside, to put inside, to go inside</span></p> : <p class="tooltip">面<span class="tooltiptext">mask, face, features, surface</span></p> : another : shore
+                <span class="tooltip">sulód<span class="tooltiptext">inside, to put inside, to go inside</span></span>
+                : 
+                <span class="tooltip">面<span class="tooltiptext">mask, face, features, surface</span></span>
+                : another : shore
             </p>
         </div>
     </div>

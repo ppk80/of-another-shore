@@ -49,6 +49,7 @@ body, html {
     border: none;
     cursor: pointer;
     z-index: 1000;
+	border-radius: 50px;
 }
 
 #leftBtn {

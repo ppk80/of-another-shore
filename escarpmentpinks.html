@@ -14,70 +14,90 @@
         /* Styling for the page background and font */
         body {
             font-family: "Exo 2", sans-serif;
-            background-color: #301520;
-            color: #eff1fe;
+            background-color: #f8e8e8; /* Soft pink background */
+            color: #7a5c63; /* Muted mauve text */
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             padding: 20px;
+            background-image: linear-gradient(45deg, #f8e8e8 0%, #fff1f1 50%, #f8e8e8 100%);
         }
 
         /* Center align the container and text */
         .poetry-container {
             text-align: center;
-            line-height: 1.6;
-            color: #eff1fe;
+            line-height: 1.8;
+            max-width: 600px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
         }
 
         h1 {
-            font-size: 2em;
-            margin-bottom: 20px;
-            color: #eff1fe;
+            font-size: 2.2em;
+            margin-bottom: 30px;
+            color: #b47b84; /* Dusty rose */
+            font-weight: 300;
+            letter-spacing: 0.05em;
         }
 
         .poem {
             font-size: 1.2em;
             margin-bottom: 40px;
-
+            font-weight: 300;
         }
 
         /* Styling for individual stanzas */
         .stanza {
             margin: 40px 0;
+            line-height: 2;
         }
-		
-        .divider {
-            margin: 20px 0;
-            font-size: 1.5em;
-        }		
+
+        .stanza br {
+            line-height: 2.2;
+        }
+
+        /* Subtle hover effect for each stanza */
+        .stanza:hover {
+            color: #96747c; /* Slightly darker on hover */
+            transition: color 0.3s ease;
+        }
+
+        /* Optional: Add a subtle animation for page load */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .poetry-container {
+            animation: fadeIn 1s ease-out forwards;
+        }
     </style>
 </head>
 <body>
- <div class="poetry-container">
+    <div class="poetry-container">
         <h1>escarpment pinks</h1>
         <div class="poem">
             <p class="stanza">
-    the same way our thirty<br>
-    year broom left us for a stampede<br>
-    of motorcycles to sweep<br>
-    clay beaches, there is no knowing<br>
-    the country above or below<br><br>
+                the same way our thirty<br>
+                year broom left us for a stampede<br>
+                of motorcycles to sweep<br>
+                clay beaches, there is no knowing<br>
+                the country above or below<br>
             </p>
-
             <p class="stanza">
-
-    without being in it. Even right<br>
-    next to the lamppost there on<br>
-    the map, we’re separated<br>
-    by an impassable wall<br>
-    of altitude. Rewire that lamp<br><br>
+                without being in it. Even right<br>
+                next to the lamppost there on<br>
+                the map, we're separated<br>
+                by an impassable wall<br>
+                of altitude. Rewire that lamp<br>
             </p>
-
             <p class="stanza">
-    so somebody knows we’re here.<br>
-    Rewire it, so the birds know,<br>
-    if the narras allow.<br>
+                so somebody knows we're here.<br>
+                Rewire it, so the birds know,<br>
+                if the narras allow.<br>
             </p>
         </div>
     </div>

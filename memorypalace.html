@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>memory palace</title>
+<style>
+        body, h1, p {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Exo 2", sans-serif;
+            background: linear-gradient(135deg, #f0f4ff 0%, #fef6e4 50%, #ffe9f3 100%);
+            color: #4b4453;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .poetry-container {
+            line-height: 1.8;
+            color: #4b4453;
+            max-width: 500px;
+            background: transparent;
+            padding: 2em;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-bottom: 30px;
+            background: linear-gradient(45deg, #8756e8, #b491f5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+        }
+
+        .poem {
+            font-size: 1.2em;
+            margin-bottom: 0px;
+        }
+
+        .stanza {
+            text-align: left;
+            margin: 0;
+            padding: 0;
+            transition: color 0.3s ease;
+        }
+
+        .stanza:nth-child(1) { color: #635985; }
+        .stanza:nth-child(2) { color: #557A95; }
+        .stanza:nth-child(3) { color: #7A4988; }
+        .stanza:nth-child(4) { color: #486B6B; }
+
+        .stanzabutton {
+            margin-left: 50px;
+            transition: color 0.3s ease;
+        }
+
+        /* Color variations for stanzabutton sections */
+        .stanzabutton:nth-of-type(3n+1) { color: #857096; }
+        .stanzabutton:nth-of-type(3n+2) { color: #739E82; }
+        .stanzabutton:nth-of-type(3n+3) { color: #6A8B98; }
+        .stanzabutton:nth-of-type(3n+4) { color: #896A98; }
+        .stanzabutton:nth-of-type(3n+5) { color: #698B7C; }
+
+        .toggle-button {
+            display: inline;
+            border: 0px;
+            border-radius: 50px;
+            cursor: pointer;
+            padding: 2px 0.5em 0px 0.5em;
+            margin: 0px;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+		.stanzabutton2 {
+			margin-left: 50px;
+			transition: color 0.3s ease;
+		}
+
+		/* Color variations for stanzabutton2 sections */
+.stanzabutton2:nth-child(3n+1) { color: #3236a8; }  /* Deep blue */
+.stanzabutton2:nth-child(3n+2) { color: #32a875; }  /* Jade green */
+.stanzabutton2:nth-child(3n+3) { color: #a83269; }  /* Deep rose */
+
+
+        /* Varied button colors */
+        .toggle-button:nth-of-type(4n+1) { 
+            background-color: #FFE2E2; 
+        }
+        .toggle-button:nth-of-type(4n+2) { 
+            background-color: #E2F0FF; 
+        }
+        .toggle-button:nth-of-type(4n+3) { 
+            background-color: #FFE5F1; 
+        }
+        .toggle-button:nth-of-type(4n+4) { 
+            background-color: #E7F9E7; 
+        }
+
+        /* Styling for the dots */
+        .toggle-button span {
+            background: linear-gradient(45deg, #8756e8, #b491f5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+        }
+
+        .toggle-button:nth-of-type(4n+1) span { 
+            background: linear-gradient(45deg, #e85656, #f591b4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .toggle-button:nth-of-type(4n+2) span { 
+            background: linear-gradient(45deg, #5687e8, #91b4f5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .toggle-button:nth-of-type(4n+3) span { 
+            background: linear-gradient(45deg, #e856c7, #f591e8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .toggle-button:nth-of-type(4n+4) span { 
+            background: linear-gradient(45deg, #56e856, #91f591);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .toggle-button:hover {
+            background-color: #bae8e8;
+            transform: translateY(-1px);
+        }
+
+        .tooltip {
+            position: relative;
+            display: inline;
+            background: linear-gradient(to top, rgba(183, 156, 237, 0.3) 0%, transparent 10%);
+            background-size: 200% 100%;
+            background-position: 100% 0;
+            transition: background-position 0.3s ease;
+            color: inherit;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            background: linear-gradient(135deg, #31614c, #4A366F);
+            color: #f5e6ff;
+            text-align: center;
+            padding: 8px 12px;
+            border-radius: 10px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            display: inline-block;
+            max-width: none;
+            white-space: nowrap;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            opacity: 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        a {
+            color: #8756e8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #b491f5;
+        }
+    </style>
+</head>
+<body>
+    <div class="poetry-container">
+        <h1>memory palace</h1>
+        <div class="poem">
+          
+			<div class="stanza">
+				demolished, but here–<br>
+				left of the kitchen
+				<button class="toggle-button" onclick="toggleStanza(this)"><span>···</span><br> </button>
+                <div class="stanzabutton">
+                   right of the cabinet where I'm <a href="threefloorhome.html">kept</a>. Intimately, I know the <span class="tooltip">contours of paint<span class="tooltiptext">into which SOME things forgotten flow, Piranesi.</span></span>  here, which balloons when it rains. 
+				   <button class="toggle-button" onclick="toggleStanza(this)"><span>···</span> </button>
+                <div class="stanzabutton2">
+                   Four rains in the evening <br>
+				   Seven rains in the morning <br>
+				   Every month wearing down <br>
+				   cement footprints, names <br>
+				   like it wants to dig so deep. <br>
+                </div>
+				   I learned to fear the dark then grow into it. The rain being so loud it feels like it could bore a hole on the roof like a
+                </div><br>
+	door, wall that curves<br>
+	against itself<br>
+	into a nautiloid
+		<button class="toggle-button" onclick="toggleStanza(this)"><span>···</span><br> </button>
+                <div class="stanzabutton">
+				if one can dream,<br>
+				dreaming of its future form<br>
+				</div><br>
+	that was not here<br>
+	before and at the same<br>
+	time always was<br>
+	as something that could	<button class="toggle-button" onclick="toggleStanza(this)"><span>···</span><br> </button>
+                <div class="stanzabutton">
+				dislocate itself from a year. Learning it could do so that year. Become virtual. I felt the house an impostor of itself. 
+				<button class="toggle-button" onclick="toggleStanza(this)"><span>···</span> </button>
+				<div class="stanzabutton2"> 
+				In that, knowing it finally<br>
+				understood me; I could whisper<br>
+				to it my wish: Someone<br>
+				else should have been born<br>
+				in my place and taken this name.<br>
+                </div>
+				float above the body of itself, on it like a boat through:<br>
+				will be what<br>
+				had been would<br>
+				</div><br>
+	have been were<br>
+	it not misplaced earlier<br>
+</div>
+
+			<br>
+			<div class="stanza">
+	ahead of that, hallway<br>
+	the smell of breakfast <button class="toggle-button" onclick="toggleStanza(this)"><span>···</span><br> </button>
+                <div class="stanzabutton">
+				absent in my recurrent dreams of transit. Enormous train stations, Gordian highways, and just trying to get home at midnight. The fleeing of the populace on buses, jeeps, trains, boats, ferries, overfull. The coming of 2 a.m. a doom bell. <button class="toggle-button" onclick="toggleStanza(this)"><span>···</span> </button>
+				<div class="stanzabutton2"> Sometimes waiting in hotels to start dreams of dead people. My aunt visited me and showed me around once while we waited for the traffic to abate. The hotel is just as confusing as the city. So many fountains. <br>
+				<br>
+				"<span class="tooltip">Bal-an mo,<span class="tooltiptext">You know,</span></span> I’ve been thinking about what it is I live my life for. <span class="tooltip">Simple lang ko nga tawo kag diutay lang ang kinanlan ko.<span class="tooltiptext">I'm a simple person, and I don't need much.</span></span>  But I’ve been thinking about it and when I see a parent’s love for their child, <span class="tooltip">I think kabalo na ko<span class="tooltiptext">I think I know.</span></span>. It's the love that I feel and we all feel for each other and the people we’re close to. That’s probably not the answer, finally, <span class="tooltip">pro pra sakon<span class="tooltiptext">but for me</span></span>, it’s enough.”<br>
+				<br>
+				I laughed, and said I'm glad she knows what she would have liked, and I'm glad to have met her here. She would never have fucking said such a thing when she was alive. We put on new clothes from the souvenir section, <br>
+                </div><br>jumping from one form to another and lost in Metro Manila's labyrinth. Hallways that keep growing: outside of the home into the city, into the islands, the ocean
+				</div><br>
+	
+	fractures away from<br>
+	into its own room<br>
+	where i can remember 
+	<button class="toggle-button" onclick="toggleStanza(this)"><span>···</span> </button>
+				<div class="stanzabutton"> palaces no longer<br>
+				tied to the matter.<br>
+				this is your<br>
+				way: the body<br>
+				becomes complete<br>
+				memory, which<br>
+				uncryogenically<br>
+				stays fresh<br>
+				through misremembering<br>
+                </div><br>
+	the one time we all<br>
+	had it here–<br>
+	stay in that cavern<br>
+	but with unbitter  <button class="toggle-button" onclick="toggleStanza(this)"><span>···</span><br> </button>
+                <div class="stanzabutton">
+				<span class="tooltip">山椒<span class="tooltiptext">サンショウ, sanshō</span></span>, which must have been left out so long it's become bland. Papa says I'm much like ojiisan, who loves that stuff, which he hates. <br><br>
+				
+				Before the roof fell in and never got fixed, I tried to grow plants here. <a href="fourbedroomgarden.html">Watering them at night</a>, because the heat would take away the moisture before they could drink it. <br><br>
+				
+				Coriander, lemongrass, and this was all before pandemic, basil, cherry tomato, and they kept hiking up the <button class="toggle-button" onclick="toggleStanza(this)"><span>···</span> </button>
+				<div class="stanzabutton2">walls, entwining with the internet cable.<br>
+				<br>
+				"My kind has been here longer than you have." said the vine.<br>
+				<br>
+				"It's not my fault they passed me through here. They will cut you out." said the internet.<br>
+				<br>
+				"I've been here longer than either of you." said the wall.<br>
+				<br>
+				"You're made up of many different kinds of rocks." said the vine. "You don't even know who you are."<Br>
+				<br>
+				"I'm much more widespread." said the internet<br>
+				<br>
+				"You don't reach everywhere." said the wall.<Br>
+				<br>
+				"You aren't even fiber optic yet.", the vine added.<br>
+				<br>
+				"I interact with humans the most." said the internet.<br>
+				<br>
+				"I don't know if that's always good." said the wall.<br>
+				<br>
+				The vine pulled against the wall. "You'll outlast humans. We have to think about them."<br>
+				<br>
+				"I might." said the internet.<br>
+				<br>
+				"The internet is kind of just a collective subconcious dumping ground. It's not so different from dreams." said the wall.<br>
+				<br>
+				"When this world goes, will you remember us?" asked the vine.<br>
+				<br>
+				The internet thought. "As a collective subconscious-like hyperobject, I cannot remember you. But I can take you with me."<br>
+				<br>
+				A voice overheard from my mom's phone: <span class="tooltip">"Ganun na nga talaga. Para lang po talaga to sa<span class="tooltiptext">That really is it. This really is just for</span></span> own to  
+                </div>rent, lemon balm, i never met ojiisan either, oregano, a tumblr network, rosemary, people started becoming afraid of going out at night, garlic, onion, eventually I just gave up, squash,
+				</div><br>
+	parsley, which gets that<br>
+	way when it's too hot<br>
+</div>
+<br>
+<div class="stanza">
+	outside, what people<br>
+	see: a mound of dirt<br>
+	the air above <button class="toggle-button" onclick="toggleStanza(this)"><span>···</span> </button>
+				<div class="stanzabutton"> the 00's being steel nimbus<br><br>
+				like it was in the early 90's, when we were flooded. I played video games my grandmother saved up for with her, waiting for the water level 	<button class="toggle-button" onclick="toggleStanza(this)"><span>···</span> </button>
+				<div class="stanzabutton2">my favorite level<br>
+				like <span class="tooltip">Christina<span class="tooltiptext tooltipimg"><img src="https://upload.wikimedia.org/wikipedia/en/a/a2/Christinasworld.jpg"></span></span><br>
+				in a drowned world<br>
+				able to swim up<br>
+                </div> to lower. A few people got electrocuted. It did subside, and came<br><br> back for me. After a certain age, the world I experienced, to me, felt submerged, in slow motion. That's how it was/is: me bedridden, in an underwater raft, dreaming, because that was all I could do, dream<br><br>
+				of what could be. And so when the time came for us to move houses, and move again, and then again. I'd already dreamt<br><br>
+				all of it. And could not believe it/what was real. And that I might blink, I would just wake up in that bed
+                </div> which is in<br>
+	the shape of the house<br>
+	that used to be there<br>
+	a thought: a breeze
+		<button class="toggle-button" onclick="toggleStanza(this)"><span>···</span> </button>
+				<div class="stanzabutton">a wrong turn, easily <br>
+				leading to another.<br><br>
+				leaving notes for myself<br>
+				on reflective surfaces<br>
+				looking for the lamp<br><br>
+				which looks wrong.<br>
+				looking for the future<br>
+				
+                </div><br>
+	which shapes it<br>
+	differently with<br>
+	every redreaming. here–<br>
+	like i always was
+			<button class="toggle-button" onclick="toggleStanza(this)"><span>···</span> </button>
+				<div class="stanzabutton" style="color: #3236a8;">in a room, detached from the very foundation of time, the idea that moving<br>
+				foward, that there is something to move towards, that there is a "forward"<br>
+				a terra incognita outside of this room, an anisotropic here or there<br> 
+				which I know well, because there is no returning <button class="toggle-button" onclick="toggleStanza(this)"><span>···</span> </button>
+				<div class="stanzabutton2" style="color: #6a8c9c;">a book<br>
+				to a library which has been declared bankrupt and foreclosed. <br><br>
+				Standing outside of it, reading the demolition notices. A fire started here three years ago, and now a new development will be built on top of it. I watch somebody in a full protective suit haul out a cart full of half-burned books. "These books have been decommissioned, so we're chucking them out."<br><br>
+				I look into the cart, and see they're biographies. All of them biographies of me, each slightly different, where slightly different things happened. The cart is hauled off, and before I could catch a glimpse of the hauler's face inside the helmet: one that looks like mine.<br><br>
+				Here, on the moon, many things are reflected. There is a business to reflecting, while earth clings		
+                </div>  to that<br>
+				image of a garden, which keeps it alive, which remains possibility<br>
+				both in past and future, in the sideways present, when it is unwritten, unuttered, unwound<br>
+				from conception at all, where it is spinning in its varigiated forms<br>
+                </div><br>
+	elsewhere, i’ll be there<br>
+</div>
+<br>
+<div class="stanza">
+	a wishing well<br>
+	full of ancient coins<br>
+</div>
+ </div>				
+
+        </div>
+    </div>
+
+    <script>
+function toggleStanza(button) {
+	 const span = button.querySelector("span"); // Select the span inside the button
+    const stanza = button.nextElementSibling; // Select the stanza below the button
+    if (stanza.style.display === 'none') {
+        stanza.style.display = 'block';
+        span.style.opacity = "0"; // Hide the button text
+
+        // Hide the <br> element after the stanza
+        let nextSibling = stanza.nextElementSibling;
+        if (nextSibling && nextSibling.tagName === 'BR') {
+            nextSibling.style.display = 'none';
+        }
+    } else {
+        stanza.style.display = 'none';
+        span.style.opacity = "1"; // Make the button text visible
+
+        // Make sure the <br> becomes visible again when minimized
+        let nextSibling = stanza.nextElementSibling;
+        if (nextSibling && nextSibling.tagName === 'BR') {
+            nextSibling.style.display = 'block';
+        }
+    }
+}
+
+        // Initially hide all stanzas for demonstration
+        document.querySelectorAll('.stanzabutton').forEach(stanza => {
+            stanza.style.display = 'none';
+        });
+    </script>
+</body>
+</html>

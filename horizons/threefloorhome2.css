@@ -1,0 +1,46 @@
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: url('tfhBackground.jpg') no-repeat center center fixed;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+
+#frameDiv {	
+  width: 700px;    /* Base width */
+  height: 492px;   /* Base height */
+  background-image: url("threefloorhome.png");
+  background-size: 100% 100%;
+  position: absolute; /* Already set in JS but good to have in CSS too */
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  overflow: visible;
+}
+
+/* Style for the inner divs that will be scaled */
+div:not(.static) {
+  position: absolute;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform-origin: center center;
+  pointer-events: auto;
+}
+
+/* Optional: Prevent text selection and dragging */
+.NoDrag {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+/* Add this to your threefloorhome2.css */
+img {
+  display: block; /* Ensures no extra space below the image */
+  max-width: 100%; /* Ensures the image does not exceed the width of the parent div */
+  height: auto; /* Maintains the aspect ratio of the image */
+}
