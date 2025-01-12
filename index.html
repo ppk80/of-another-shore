@@ -263,7 +263,9 @@ body, html {
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: gradientShift 8s ease infinite;
+    text-shadow: 20px 20px 40px rgba(30, 60, 0, 0.1);
+    letter-spacing: 0.5px;
+    filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.3));
         }
 		
 @keyframes gradientShift {
@@ -279,19 +281,69 @@ body, html {
 }
 
 .section-1 a {
-    background: none;
-    -webkit-text-fill-color: initial;
-    color: #49adb3; /* Base color */
+    background: linear-gradient(
+        45deg,
+        #49adb3 0%,
+        #5bbec4 25%,
+        #6dcfd5 50%,
+        #5bbec4 75%,
+        #49adb3 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
     text-decoration: none;
-    transition: color 0.3s ease, text-decoration 0.3s ease;
+    animation: linkFloat 6s ease-in-out infinite;
+    display: inline-block;
+    padding: 0 4px;
 }
 
-/* Anchor tags hover effect */
 .section-1 a:hover {
-    color: #aa49b3; /* Hover color */
-    text-decoration: none;
+    background: linear-gradient(
+        45deg,
+        #aa49b3 0%,
+        #bb5ac4 25%,
+        #cc6bd5 50%,
+        #bb5ac4 75%,
+        #aa49b3 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: linkPulse 1.5s ease-in-out infinite;
 }
 
+@keyframes linkFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-3px);
+    }
+}
+
+@keyframes linkPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* Add this hover effect for non-link text */
+.section-1:hover {
+    animation: textGlow 2s ease-in-out infinite;
+}
+
+@keyframes textGlow {
+    0%, 100% {
+        filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.3));
+    }
+    50% {
+        filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+    }
+}
     </style>
 </head>
 <body>
