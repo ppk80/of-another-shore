@@ -18,7 +18,7 @@
 /* Root colors for the dream-like beach theme */
 :root {
     --bg-color: #f4e2d8; /* Sandy beige */
-    --text-color: #998e79; /* Muted taupe */
+    --text-color: #807663; /* Muted taupe */
     --link-color: #3a8fb7; /* Ocean blue */
     --link-hover-color: #ffa07a; /* Soft coral */
     --heading-color-start: #b58191; /* Dusty rose */
@@ -75,9 +75,6 @@ body, html {
     box-sizing: border-box;
 }
 
-.section:first-child {
-    display: flex; /* Show the first section by default */
-}
 
 .nav-btn {
     position: fixed;
@@ -248,7 +245,52 @@ body, html {
     z-index: 999; /* Ensure it overlays other sections */
 }
 
+        .section-1 {
+		transform: translate(0, 10%);
+		    font-size: 1.4rem; 
+    line-height: 1.8; 
+	position: absolute;
+            margin: 0;
+            white-space: pre-wrap; /* Preserve line breaks in the text */
+			   background: linear-gradient(
+        45deg,
+        var(--text-color) 0%,      /* Starting with the muted taupe */
+        #6b6450 25%,               /* Slightly lighter taupe */
+        #806a63 50%,               /* Warm sand color */
+        #78644e 75%,               /* Back to medium taupe */
+        var(--text-color) 100%     /* Ending with muted taupe */
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientShift 8s ease infinite;
+        }
+		
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
 
+.section-1 a {
+    background: none;
+    -webkit-text-fill-color: initial;
+    color: #49adb3; /* Base color */
+    text-decoration: none;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+/* Anchor tags hover effect */
+.section-1 a:hover {
+    color: #aa49b3; /* Hover color */
+    text-decoration: none;
+}
 
     </style>
 </head>
@@ -256,7 +298,13 @@ body, html {
     <header>
         <h1>Of Another Shore</h1>
     </header>
-    <div class="section section-1">he lunar <br>eye interred <br>into the <br>mouth <br>of the <br>derelict <br>station <br>imagines <br>itself the <br>minute <br>hand of <br>a snail <br>on a rose <br>scented <br>mask <br>used to <br>induce <br>general <br>anesthesia <br>reaching <br>instead <br>for the <br>Lethe vision <br>of a world <br>capable <br>of going <br>away <br></div>
+    <div class="section section-1">
+d!n0sa#ur t(..t dr1p,s t_h.u th#e c|0k&rsquo;s <a href="memorypalace.html" target="_blank">di_g3st!v3 t7r/ac%t;;</a><br>
+.00.. <a href="sandstoneschistandesite.html" target="_blank">p3t/r!fied</a> b0ot|terf|!es ch@w&amp;i.g (on m00|nbea~~ms~&mdash;<br>
+ur m3--s.ry le@ks p(r!m0rdi@l suP fRom 1!ts po&lt;ke+ts;;<br>
+th3 h?ouse g|ew tt:eeth annd sw@l(ow&amp;ed !+ts o!wn sh@d_0wz&mdash;<br>
+timme ma(c)!h1n*es |aY e66gs !n y3ste<a href="iwantedtothinkabouttimeiwanted.html" target="_blank">rda_y$ t!m_0r</a>0~~sk&yen;...
+	</div>
  <div class="section section-2">
     <div class="map-container">
         <a href="moonmilk.html" class="node" style="top: 20%; left: 30%;" target="_blank">Oceanus Procellarum</a>
@@ -277,8 +325,8 @@ body, html {
     </a>
 </div>
 </div>
-    <button id="leftBtn" class="nav-btn">🌎</button>
-    <button id="rightBtn" class="nav-btn">🌏</button>
+    <button id="leftBtn" class="nav-btn">←</button>
+    <button id="rightBtn" class="nav-btn">→</button>
 	<div class="menu">
 	 <div class="text">
 	 <div class="item">
