@@ -5,13 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>memory palace</title>
 <style>
+
+@import url('https://fonts.googleapis.com/css2?family=Averia+Sans+Libre&display=swap');
+ 
         body, h1, p {
             margin: 0;
             padding: 0;
         }
 
         body {
-            font-family: "Exo 2", sans-serif;
+            font-family: "Averia Sans Libre", sans-serif;
             background: linear-gradient(135deg, #f0f4ff 0%, #fef6e4 50%, #ffe9f3 100%);
             color: #4b4453;
             display: flex;
@@ -56,7 +59,7 @@
         .stanza:nth-child(4) { color: #486B6B; }
 
         .stanzabutton {
-            margin-left: 50px;
+            margin-left: 1rem;
             transition: color 0.3s ease;
         }
 
@@ -79,12 +82,12 @@
         }
 
 		.stanzabutton2 {
-			margin-left: 50px;
+			margin-left: 1rem;
 			transition: color 0.3s ease;
 		}
 
 		/* Color variations for stanzabutton2 sections */
-.stanzabutton2:nth-child(3n+1) { color: #3236a8; }  /* Deep blue */
+.stanzabutton2:nth-child(3n+1) { color: #6e62cc; }  /* Deep blue */
 .stanzabutton2:nth-child(3n+2) { color: #32a875; }  /* Jade green */
 .stanzabutton2:nth-child(3n+3) { color: #a83269; }  /* Deep rose */
 
@@ -233,10 +236,10 @@
 				</div><br>
 	have been were<br>
 	it not misplaced earlier<br>
-</div>
+
 
 			<br>
-			<div class="stanza">
+
 	ahead of that, hallway<br>
 	the smell of breakfast <button class="toggle-button" onclick="toggleStanza(this)"><span>···</span><br> </button>
                 <div class="stanzabutton">
@@ -246,7 +249,7 @@
 				"<span class="tooltip">Bal-an mo,<span class="tooltiptext">You know,</span></span> I’ve been thinking about what it is I live my life for. <span class="tooltip">Simple lang ko nga tawo kag diutay lang ang kinanlan ko.<span class="tooltiptext">I'm a simple person, and I don't need much.</span></span>  But I’ve been thinking about it and when I see a parent’s love for their child, <span class="tooltip">I think kabalo na ko<span class="tooltiptext">I think I know.</span></span>. It's the love that I feel and we all feel for each other and the people we’re close to. That’s probably not the answer, finally, <span class="tooltip">pro pra sakon<span class="tooltiptext">but for me</span></span>, it’s enough.”<br>
 				<br>
 				I laughed, and said I'm glad she knows what she would have liked, and I'm glad to have met her here. She would never have fucking said such a thing when she was alive. We put on new clothes from the souvenir section, <br>
-                </div><br>jumping from one form to another and lost in Metro Manila's labyrinth. Hallways that keep growing: outside of the home into the city, into the islands, the ocean
+                </div><br>jumping from one form to another and lost in Metro Manila's labyrinth. Hallways that keep growing: outside of the home into the city, into the islands the ocean
 				</div><br>
 	
 	fractures away from<br>
@@ -308,9 +311,9 @@
 				</div><br>
 	parsley, which gets that<br>
 	way when it's too hot<br>
-</div>
+
 <br>
-<div class="stanza">
+
 	outside, what people<br>
 	see: a mound of dirt<br>
 	the air above <button class="toggle-button" onclick="toggleStanza(this)"><span>···</span> </button>
@@ -395,6 +398,10 @@ function toggleStanza(button) {
 
         // Initially hide all stanzas for demonstration
         document.querySelectorAll('.stanzabutton').forEach(stanza => {
+            stanza.style.display = 'none';
+        });
+		
+        document.querySelectorAll('.stanzabutton2').forEach(stanza => {
             stanza.style.display = 'none';
         });
     </script>

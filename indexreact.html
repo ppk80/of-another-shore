@@ -9,6 +9,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600&family=Quicksand:wght@300;400;600&family=Nova+Round&display=swap" rel="stylesheet">
+	
+	
 <style>
 /* Import the dream-like beach theme font */
 @import url('https://fonts.googleapis.com/css2?family=Averia+Sans+Libre&display=swap');
@@ -147,61 +149,43 @@ body, html {
     align-items: center;
 }
 
-.image-container {
-    position: relative;
-    height: 100%;
-    width: 100%;
-}
-
-.image {
-    position: absolute;
-    opacity: 0.9; /* Optional: slightly transparent for an ethereal look */
-    transition: transform 0.3s ease, opacity 0.3s ease;
-	    animation: moveAndRotate 60s ease-in-out infinite;
-}
 
 
-.image-1 {
-    animation-delay: 0s;
-}
-
-.image-2 {
-    animation-delay: 2s; /* Start later than Image 1 */
-}
-
-.image-3 {
-    animation-delay: 4s; /* Start later than Image 2 */
-}
-
-@keyframes moveAndRotate {
-    0% {
-        transform: translate(0, 0) rotate(0);
-    }
-    25% {
-        transform: translate(50px, -30px) rotate(15deg);
-    }
-    50% {
-        transform: translate(-40px, 50px) rotate(-10deg);
-    }
-    75% {
-        transform: translate(30px, -20px) rotate(5deg);
-    }
-    100% {
-        transform: translate(0, 0) rotate(0);
-    }
-}
-
-.image:hover {
+.floating-image:hover {
     transform: scale(1.1); /* Slightly enlarge on hover */
     opacity: 1; /* Fully opaque on hover */
 	mix-blend-mode: exclusion;
 }
 
-.image:active {
+.floating-image:active {
     transform: scale(1.1); /* Slightly enlarge on hover */
     opacity: 1; /* Fully opaque on hover */
 	mix-blend-mode: exclusion;
 }
+
+
+        .image-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .floating-image {
+            position: absolute;
+            cursor: pointer;
+            will-change: transform;
+        }
+
+        .floating-image img {
+            width: 400px;
+            height: auto;
+        }
+
+        .floating-image:nth-child(3) img {
+            width: 300px;
+        }
+
 
 
 .text{
@@ -264,14 +248,14 @@ body, html {
 </div>
 
     <div class="section section-3"><div class="image-container">
-    <a href="dungan.html" target="_blank">
-        <img src="img/egg.png" alt="Image 1" class="image image-1" style="top: 20%; left: 20%; transform: rotate(-50deg); width:400px;">
+    <a href="dungan.html" target="_blank" class="floating-image">
+        <img src="img/egg.png" alt="Image 1">
     </a>
-    <a href="inmachuria.html" target="_blank">
-        <img src="img/photograph.png" alt="Image 2" class="image image-2" style="top: 15%; left: 35%; transform: rotate(60deg); width:400px;">
+    <a href="inmachuria.html" target="_blank" class="floating-image">
+        <img src="img/photograph.png" alt="Image 2">
     </a>
-    <a href="afterwemisrememberthegrains.html" target="_blank">
-        <img src="img/grains.png" alt="Image 3" class="image image-3" style="top: 25%; left: 40%; transform: rotate(5deg); width:300px;">
+    <a href="afterwemisrememberthegrains.html" target="_blank" class="floating-image">
+        <img src="img/grains.png" alt="Image 3">
     </a>
 </div>
 </div>
@@ -537,6 +521,72 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 </script>
+
+ <script>
+        function createFloatingAnimation(element, centerX, centerY, radiusX, radiusY, rotationRange, duration, startDelay = 0) {
+            const startTime = performance.now() + startDelay;
+            let baseRotation = parseFloat(element.dataset.baseRotation || 0);
+
+            function animate() {
+                const now = performance.now();
+                const elapsed = ((now - startTime) / duration) % 1;
+                const angle = elapsed * Math.PI * 2;
+                
+                // Calculate position
+                const x = centerX + Math.sin(angle) * radiusX;
+                const y = centerY + Math.cos(angle) * radiusY;
+                
+                // Calculate rotation
+                const rotation = baseRotation + Math.sin(angle) * rotationRange;
+                
+                // Apply transform
+                element.style.transform = `translate(${x}px, ${y}px) rotate(${rotation}deg)`;
+                
+                requestAnimationFrame(animate);
+            }
+
+            setTimeout(() => requestAnimationFrame(animate), startDelay);
+        }
+
+        // Initialize animations for each image
+        const images = document.querySelectorAll('.floating-image');
+        
+        // First image
+        createFloatingAnimation(
+            images[0],
+            0, // centerX
+            0, // centerY
+            50,  // radiusX
+            30,  // radiusY
+            5,   // rotation range
+            15000, // duration
+            0    // delay
+        );
+
+        // Second image
+        createFloatingAnimation(
+            images[1],
+            0,  // centerX
+            0,  // centerY
+            40,   // radiusX
+            40,   // radiusY
+            8,    // rotation range
+            18000, // duration
+            2000  // delay
+        );
+
+        // Third image
+        createFloatingAnimation(
+            images[2],
+            0,  // centerX
+            0,  // centerY
+            30,   // radiusX
+            50,   // radiusY
+            3,    // rotation range
+            20000, // duration
+            4000  // delay
+        );
+    </script>
 
 </body>
 </html>
