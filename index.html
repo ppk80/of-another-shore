@@ -127,7 +127,7 @@ body, html {
 
 .node::before {
     /* Create the star using the ★ character */
-    content: "★";
+    content: "🌘︎";
     position: absolute;
     color: #87d9ff; /* Gold color for visibility */
     font-size: 1.2em; /* Make star slightly larger than text */
@@ -167,41 +167,80 @@ body, html {
 
 .image {
     position: absolute;
-    opacity: 0.9; /* Optional: slightly transparent for an ethereal look */
-    transition: transform 0.3s ease, opacity 0.3s ease;
-	    animation: moveAndRotate 60s ease-in-out infinite;
+    opacity: 0.9; /* Slightly transparent for an ethereal look */
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
 }
 
-
+/* Unique animation for Image 1 */
 .image-1 {
-    animation-delay: 0s;
+    animation-name: animation1;
+    animation-duration: 55s; /* Slightly shorter loop for variation */
 }
-
-.image-2 {
-    animation-delay: 2s; /* Start later than Image 1 */
-}
-
-.image-3 {
-    animation-delay: 4s; /* Start later than Image 2 */
-}
-
-@keyframes moveAndRotate {
+@keyframes animation1 {
     0% {
-        transform: translate(0, 0) rotate(0);
+        transform: translate(0, 0) rotate(-50deg);
     }
-    25% {
-        transform: translate(50px, -30px) rotate(15deg);
+    20% {
+        transform: translate(30px, -50px) rotate(-30deg);
     }
     50% {
-        transform: translate(-40px, 50px) rotate(-10deg);
+        transform: translate(-50px, 40px) rotate(-70deg);
     }
-    75% {
-        transform: translate(30px, -20px) rotate(5deg);
+    80% {
+        transform: translate(20px, -30px) rotate(-10deg);
     }
     100% {
-        transform: translate(0, 0) rotate(0);
+        transform: translate(0, 0) rotate(-50deg);
     }
 }
+
+/* Unique animation for Image 2 */
+.image-2 {
+    animation-name: animation2;
+    animation-duration: 65s; /* Longer loop for more subtle motion */
+}
+@keyframes animation2 {
+    0% {
+        transform: translate(0, 0) rotate(60deg);
+    }
+    25% {
+        transform: translate(-40px, 30px) rotate(45deg);
+    }
+    50% {
+        transform: translate(50px, -20px) rotate(90deg);
+    }
+    75% {
+        transform: translate(-20px, 50px) rotate(30deg);
+    }
+    100% {
+        transform: translate(0, 0) rotate(60deg);
+    }
+}
+
+/* Unique animation for Image 3 */
+.image-3 {
+    animation-name: animation3;
+    animation-duration: 50s; /* Faster loop for more dynamic movement */
+}
+@keyframes animation3 {
+    0% {
+        transform: translate(0, 0) rotate(5deg);
+    }
+    15% {
+        transform: translate(20px, -10px) rotate(-10deg);
+    }
+    40% {
+        transform: translate(-30px, 30px) rotate(15deg);
+    }
+    70% {
+        transform: translate(40px, -40px) rotate(0deg);
+    }
+    100% {
+        transform: translate(0, 0) rotate(5deg);
+    }
+}
+
 
 .image:hover {
     transform: scale(1.1); /* Slightly enlarge on hover */
@@ -411,7 +450,7 @@ timme ma(c)!h1n*es |aY e66gs !n y3ste<a href="iwantedtothinkabouttimeiwanted.htm
 
     <div class="section section-3"><div class="image-container">
     <a href="dungan.html" target="_blank">
-        <img src="img/egg.png" alt="Image 1" class="image image-1" style="top: 20%; left: 20%; transform: rotate(-50deg); width:400px;">
+        <img src="img/egg.png" alt="Image 1" class="image image-1" style="top: 25%; left: 20%; transform: rotate(-50deg); width:400px;">
     </a>
     <a href="inmanchuria.html" target="_blank">
         <img src="img/photograph.png" alt="Image 2" class="image image-2" style="top: 15%; left: 35%; transform: rotate(60deg); width:400px;">
