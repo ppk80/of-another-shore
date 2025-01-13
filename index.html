@@ -518,6 +518,13 @@ const backgroundImages = {
     3: 'url("path/to/image3.jpg")'
 };
 
+const blendModes = {
+    1: 'normal',
+    2: 'normal',
+    3: 'normal'
+};
+
+
 // Get DOM elements
 const sections = document.querySelectorAll('.section');
 const leftBtn = document.getElementById('leftBtn');
@@ -530,6 +537,7 @@ function initializePage() {
     sections.forEach(section => section.style.display = 'none');
     sections[currentSection - 1].style.display = 'block';
     document.body.style.backgroundImage = backgroundImages[currentSection];
+	document.body.style.backgroundBlendMode = blendModes[currentSection];
     
     // Add transitions
     document.body.style.transition = 'background-image 0.5s ease-in-out';

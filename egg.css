@@ -1,12 +1,14 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Averia+Sans+Libre&display=swap');
+
 body, html {
     margin: 0;
     padding: 0;
     height: 100%;
     overflow: hidden;
-    font-family: "Exo 2", sans-serif;
-    background-color: #301520;
-    color: #eff1fe; /* text color */
-    text-shadow: 2px 2px 10px rgba(0, 0, 0, 1), 2px 2px 5px rgba(0.1, 0.1, 0, 1), 2px 2px 20px rgba(0.1, 0.1, 0, 1); /* Adjust shadow as needed */
+    font-family: "Averia Sans Libre", sans-serif;
+    background-color: #d1c9b2;
+
 
 }
 
@@ -22,13 +24,47 @@ body, html {
     padding: 20px;
     box-sizing: border-box;
     position: relative;
-    color: #eff1fe; /* Set the text color */
+    color: #cbbfd9; /* Set the text color */
+	
 }
 
 .section:first-child {
     display: flex; /* Show the first section by default */
 }
 
+
+.section .text {
+    position: relative;
+    display: inline-block;
+    background: conic-gradient(from 0deg, #d1c9b2, #7b8ead, #ab9ab3, #c5b0d1, #d1c9b2);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    z-index: 1;
+    
+    /* Move animation to background-image instead of the entire background property */
+    animation: spin-gradient 2s linear infinite;
+}
+
+.section .text::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    text-shadow: 0 0 20px rgba(0, 0, 0, 0.5), 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes spin-gradient {
+    from {
+        /* Only animate the background-image */
+        background-image: conic-gradient(from 0deg, #d1c9b2, #7b8ead, #ab9ab3, #c5b0d1, #d1c9b2);
+    }
+    to {
+        background-image: conic-gradient(from 360deg, #d1c9b2, #7b8ead, #ab9ab3, #c5b0d1, #d1c9b2);
+    }
+}
 
 .section-image {
     position: absolute;
@@ -54,10 +90,14 @@ body, html {
 
 #leftBtn {
     left: 20px;
+	background-color: #98a0b8;
+	color: #6f7eb3;
 }
 
 #rightBtn {
     right: 20px;
+	background-color: #98a0b8;
+	color: #6f7eb3;
 }
 
         .section-1 {
@@ -65,6 +105,8 @@ body, html {
 			    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+	background-color: inherit ;
+	background-blend-mode: hue;
         }
 
         .section-2 {
@@ -72,6 +114,8 @@ body, html {
 			    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+	background-color: inherit ;
+	background-blend-mode: hue;
         }
 
         .section-3 {
@@ -79,6 +123,8 @@ body, html {
 			    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+	background-color: inherit ;
+	background-blend-mode: hue;
         }
 
         .section-4 {
@@ -86,6 +132,8 @@ body, html {
 			    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+	background-color: inherit ;
+	background-blend-mode: hue;
         }
 
         .section-5 {
@@ -93,6 +141,8 @@ body, html {
 			    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+	background-color: inherit ;
+	background-blend-mode: hue;
         }
 
         .section-6 {
@@ -100,6 +150,8 @@ body, html {
 			    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+	background-color: inherit ;
+	background-blend-mode: hue;
         }
 
         .section-7 {
@@ -107,4 +159,6 @@ body, html {
 			    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+	background-color: inherit ;
+	background-blend-mode: hue;
         }
