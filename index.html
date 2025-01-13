@@ -44,22 +44,32 @@ body, html {
             pointer-events: none; /* Allow clicks to pass through header */
         }
 
-        h1 {
-            font-family: "Averia Sans Libre", sans-serif;
-            font-size: 3rem;
-            margin: 20px;
-            background: linear-gradient(to right, var(--heading-color-start) 40%, var(--heading-color-end) 60%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-align: center;
-            pointer-events: auto; /* Re-enable clicks for the h1 */
-            cursor: pointer;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-			text-align: center;
-        }
+h1 {
+    font-family: "Averia Sans Libre", sans-serif;
+    font-size: 3rem;
+    margin: 20px;
+    background: linear-gradient(to right, var(--heading-color-start) 40%, var(--heading-color-end) 60%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+    pointer-events: auto; /* Re-enable clicks for the h1 */
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    transition: transform 0.3s ease, text-shadow 0.3s ease;
+}
+
+/* Hover effect */
+h1:hover {
+     text-shadow: 0 4px 15px rgba(58, 243, 183, 0.4); /* Ocean blue and dusty rose glow */
+}
+
+/* Active effect */
+h1:active {
+    text-shadow: 0 3px 10px rgba(255, 160, 122, 0.6); /* Soft coral glow */
+}
 
 
 .section {
@@ -86,7 +96,22 @@ body, html {
     border: none;
     cursor: pointer;
     z-index: 1000;
-	border-radius: 50px;
+    border-radius: 50px;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Gradient effect on hover */
+.nav-btn:hover {
+    background: linear-gradient(45deg, #ff6b6b, #ff9770, #ffc3a0);
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.6);
+    color: white; /* Ensures text remains visible against the gradient */
+}
+
+/* Gradient effect on active (when clicked) */
+.nav-btn:active {
+    background: linear-gradient(45deg, #ff9770, #ff6b6b, #d96c89);
+    box-shadow: 0 2px 10px rgba(217, 108, 137, 0.5);
+    transform: translateY(-50%) scale(0.95); /* Subtle scale effect */
 }
 
 #leftBtn {
@@ -328,7 +353,7 @@ body, html {
 
 .section-1 {
 		transform: translate(0, 10%);
-		    font-size: 1.8rem; 
+		    font-size: 1.5rem; 
     line-height: 1.5; 
 	position: absolute;
             margin: 0;
@@ -426,6 +451,15 @@ body, html {
     50% {
         filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
     }
+}
+
+.section-2 a{
+	color: #4d6299;
+	font-family: "Syne Mono", sans-serif;
+}
+
+.section-2 a:hover{
+	color: #4d995c;
 }
     </style>
 </head>
