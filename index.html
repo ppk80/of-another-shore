@@ -9,8 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600&family=Quicksand:wght@300;400;600&family=Nova+Round&display=swap" rel="stylesheet">
-	
-	
+<link href="https://fonts.googleapis.com/css2?family=Syne+Mono&family=Syne+Tactile&display=swap" rel="stylesheet">
 <style>
 /* Import the dream-like beach theme font */
 @import url('https://fonts.googleapis.com/css2?family=Averia+Sans+Libre&display=swap');
@@ -124,6 +123,20 @@ body, html {
     font-size: 2rem;
     font-family: "Averia Sans Libre", sans-serif;
     transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.node::before {
+    /* Create the star using the ★ character */
+    content: "★";
+    position: absolute;
+    color: #87d9ff; /* Gold color for visibility */
+    font-size: 1.2em; /* Make star slightly larger than text */
+    
+    /* Position star above the node text */
+    left: 50%; /* Center horizontally relative to node */
+    transform: translateX(-50%); /* Offset by half its width for true centering */
+    bottom: 100%; /* Position above the node */
+    margin-bottom: 5px; /* Add some space between star and text */
 }
 
 .node:hover {
@@ -267,10 +280,17 @@ body, html {
     background-color: var(--link-hover-color);
 }
 
-        .section-1 {
+.sand-grainy {
+  background-color: #f4d03f;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-blend-mode: multiply;
+  opacity: 0.9;
+}
+
+.section-1 {
 		transform: translate(0, 10%);
-		    font-size: 1.4rem; 
-    line-height: 1.8; 
+		    font-size: 1.8rem; 
+    line-height: 1.5; 
 	position: absolute;
             margin: 0;
             white-space: pre-wrap; /* Preserve line breaks in the text */
@@ -284,11 +304,12 @@ body, html {
     );
     -webkit-background-clip: text;
     background-clip: text;
+	font-family: "Syne Tactile", sans-serif;
     -webkit-text-fill-color: transparent;
     text-shadow: 20px 20px 40px rgba(30, 60, 0, 0.1);
     letter-spacing: 0.5px;
-    filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.3));
-        }
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.3));
+}
 		
 @keyframes gradientShift {
     0% {
@@ -311,6 +332,7 @@ body, html {
         #5bbec4 75%,
         #49adb3 100%
     );
+	
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
