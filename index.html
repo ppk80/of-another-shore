@@ -365,18 +365,9 @@ h1:active {
     line-height: 1.5;
     font-family: "Syne Tactile", sans-serif;
     letter-spacing: 0.5px;
-    /* Now has its own gradient background */
-    background: linear-gradient(
-        45deg,
-        var(--text-color) 0%,
-        #6b6450 25%,
-        #806a63 50%,
-        #78644e 75%,
-        var(--text-color) 100%
-    );
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+	/* background-color: var(--text-color);*/
+	/* color: var(--bg-color); */
+	padding-bottom: 1rem;
     text-shadow: 20px 20px 40px rgba(30, 60, 0, 0.1);
     filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.3));
     transition: transform 0.3s ease;
@@ -394,7 +385,6 @@ h1:active {
     /* Give hover text its own distinct color, not affected by parent gradient */
     background: none;
     color: rgba(128, 118, 99, 0.6);
-    -webkit-text-fill-color: rgba(128, 118, 99, 0.6); /* Override parent's transparent fill */
     text-align: center;
     padding-top: 10px;
     opacity: 0;
