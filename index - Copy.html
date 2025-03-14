@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Of Another Shore</title>
+	<link rel="shortcut icon" type="image/png" href="img/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600&family=Quicksand:wght@300;400;600&family=Nova+Round&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne+Mono&family=Syne+Tactile&display=swap" rel="stylesheet">
+<style>
+/* Import the dream-like beach theme font */
+@import url('https://fonts.googleapis.com/css2?family=Averia+Sans+Libre&display=swap');
+
+/* Root colors for the dream-like beach theme */
+:root {
+    --bg-color: #f4e2d8; /* Sandy beige */
+    --text-color: #807663; /* Muted taupe */
+    --link-color: #3a8fb7; /* Ocean blue */
+    --link-hover-color: #ffa07a; /* Soft coral */
+    --heading-color-start: #b58191; /* Dusty rose */
+    --heading-color-end: #2c6975; /* Muted teal */
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+	width: 100%;
+    font-family: "Averia Sans Libre", sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+        header {
+            position: relative;
+            top: 20px;
+            left: 0;
+            right: 0;
+            width: 100%;
+            z-index: 1000;
+            pointer-events: none; /* Allow clicks to pass through header */
+        }
+
+h1 {
+    font-family: "Averia Sans Libre", sans-serif;
+    font-size: 3rem;
+    margin: 20px;
+    background: linear-gradient(to right, var(--heading-color-start) 40%, var(--heading-color-end) 60%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+    pointer-events: auto; /* Re-enable clicks for the h1 */
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    transition: transform 0.3s ease, text-shadow 0.3s ease;
+}
+
+/* Hover effect */
+h1:hover {
+     text-shadow: 0 4px 15px rgba(58, 243, 183, 0.4); /* Ocean blue and dusty rose glow */
+}
+
+/* Active effect */
+h1:active {
+    text-shadow: 0 3px 10px rgba(255, 160, 122, 0.6); /* Soft coral glow */
+}
+
+
+.section {
+    height: 100vh;
+    width: 100%;
+    display: none; /* Hide all sections initially */
+    justify-content: center;
+    align-items: center;
+    font-size: 1.25rem;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+
+.nav-btn {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: var(--text-color);
+    color: var(--bg-color);
+    border: none;
+    cursor: pointer;
+    z-index: 1000;
+    border-radius: 50px;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Gradient effect on hover */
+.nav-btn:hover {
+    background: linear-gradient(45deg, #ff6b6b, #ff9770, #ffc3a0);
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.6);
+    color: white; /* Ensures text remains visible against the gradient */
+}
+
+/* Gradient effect on active (when clicked) */
+.nav-btn:active {
+    background: linear-gradient(45deg, #ff9770, #ff6b6b, #d96c89);
+    box-shadow: 0 2px 10px rgba(217, 108, 137, 0.5);
+    transform: translateY(-50%) scale(0.95); /* Subtle scale effect */
+}
+
+#leftBtn {
+    left: 20px;
+}
+
+#rightBtn {
+    right: 20px;
+}
+
+/* Background images for sections */
+.section-1, .section-2, .section-3{
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+        .section-1 { background-image: url(''); }
+        .section-2 { background-image: url(''); }
+        .section-3 { background-image: url(''); }
+
+
+.map-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.node {
+    position: absolute;
+    color: var(--link-color);
+    text-decoration: none;
+    font-size: 2rem;
+    font-family: "Averia Sans Libre", sans-serif;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.node::before {
+    /* Create the star using the ★ character */
+    content: "🌘︎";
+    position: absolute;
+    color: #87d9ff; /* Gold color for visibility */
+    font-size: 1.2em; /* Make star slightly larger than text */
+    
+    /* Position star above the node text */
+    left: 50%; /* Center horizontally relative to node */
+    transform: translateX(-50%); /* Offset by half its width for true centering */
+    bottom: 100%; /* Position above the node */
+    margin-bottom: 5px; /* Add some space between star and text */
+}
+
+.node:hover {
+    color: var(--link-hover-color);
+}
+
+/* Styling for each item container */
+.item {
+    margin: 1.5rem 0;
+}
+
+.section-3 {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    background-color: var(--bg-color);
+    overflow: hidden; /* Ensures content doesn't spill out */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+.image {
+    position: absolute;
+    opacity: 0.9; /* Slightly transparent for an ethereal look */
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+}
+
+/* Unique animation for Image 1 */
+.image-1 {
+    animation-name: animation1;
+    animation-duration: 55s; /* Slightly shorter loop for variation */
+}
+@keyframes animation1 {
+    0% {
+        transform: translate(0, 0) rotate(-50deg);
+    }
+    20% {
+        transform: translate(30px, -50px) rotate(-30deg);
+    }
+    50% {
+        transform: translate(-50px, 40px) rotate(-70deg);
+    }
+    80% {
+        transform: translate(20px, -30px) rotate(-10deg);
+    }
+    100% {
+        transform: translate(0, 0) rotate(-50deg);
+    }
+}
+
+/* Unique animation for Image 2 */
+.image-2 {
+    animation-name: animation2;
+    animation-duration: 65s; /* Longer loop for more subtle motion */
+}
+@keyframes animation2 {
+    0% {
+        transform: translate(0, 0) rotate(60deg);
+    }
+    25% {
+        transform: translate(-40px, 30px) rotate(45deg);
+    }
+    50% {
+        transform: translate(50px, -20px) rotate(90deg);
+    }
+    75% {
+        transform: translate(-20px, 50px) rotate(30deg);
+    }
+    100% {
+        transform: translate(0, 0) rotate(60deg);
+    }
+}
+
+/* Unique animation for Image 3 */
+.image-3 {
+    animation-name: animation3;
+    animation-duration: 50s; /* Faster loop for more dynamic movement */
+}
+@keyframes animation3 {
+    0% {
+        transform: translate(0, 0) rotate(5deg);
+    }
+    15% {
+        transform: translate(20px, -10px) rotate(-10deg);
+    }
+    40% {
+        transform: translate(-30px, 30px) rotate(15deg);
+    }
+    70% {
+        transform: translate(40px, -40px) rotate(0deg);
+    }
+    100% {
+        transform: translate(0, 0) rotate(5deg);
+    }
+}
+
+
+.image-mask:hover ~ .image.main{
+    opacity: 1; /* Fully opaque on hover */
+	mix-blend-mode: exclusion;
+}
+
+.image:active {
+    transform: scale(1.1); /* Slightly enlarge on hover */
+    opacity: 1; /* Fully opaque on hover */
+	mix-blend-mode: exclusion;
+}
+
+
+.text{
+	position: relative;
+}
+/* Styling for main title links */
+.text a.title-link {
+    font-family: "Nova Round", sans-serif;
+    text-decoration: none;
+    color: var(--link-color);
+    font-size: 1.3rem;
+    display: block;
+
+}
+
+.text a.title-link:hover {
+    color: var(--link-hover-color);
+}
+
+/* Specific styling for notes links */
+.text a.notes-link {
+    color: #c07b7b; /* Soft pinkish color for notes links */
+    font-size: 1rem; /* Slightly smaller font size */
+    /* Adds spacing from the main title */
+    font-style: italic; /* Distinct italic style */
+}
+
+.text a.notes-link:hover {
+    color: #ffa07a; /* Coral hover color */
+}
+
+.menu {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+	height 80%;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    z-index: 999; /* Ensure it overlays other sections */
+    scrollbar-color: var(--link-color) var(--bg-color);
+    -webkit-scrollbar-color: var(--link-color) var(--bg-color);
+}
+
+/* Rounded scrollbar styling */
+.menu::-webkit-scrollbar {
+    width: 8px; /* Width of the scrollbar */
+}
+
+.menu::-webkit-scrollbar-track {
+    background: var(--bg-color); /* Track color */
+}
+
+.menu::-webkit-scrollbar-thumb {
+    background-color: var(--link-color);
+    border-radius: 50px; /* Rounded scrollbar thumb */
+    border: 2px solid var(--bg-color); /* Optional: border around the scrollbar */
+}
+
+/* Ethereal hover effect for scrollbar */
+.menu::-webkit-scrollbar-thumb:hover {
+    background-color: var(--link-hover-color);
+}
+
+.sand-grainy {
+  background-color: #f4d03f;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-blend-mode: multiply;
+  opacity: 0.9;
+}
+
+.section-1 {
+    transform: translate(0, 10%);
+    position: absolute;
+    margin: 0;
+    white-space: pre-wrap;
+}
+
+/* Separate styling for section-1-text */
+.section-1-text {
+    position: relative;
+    font-size: 1.5rem;
+    line-height: 1.5;
+    font-family: "Syne Tactile", sans-serif;
+    letter-spacing: 0.5px;
+	/* background-color: var(--text-color);*/
+	/* color: var(--bg-color); */
+	padding-bottom: 1rem;
+    text-shadow: 20px 20px 40px rgba(30, 60, 0, 0.1);
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.3));
+    transition: transform 0.3s ease;
+}
+
+/* Hover text styling */
+.section-1-text::after {
+    content: "text generated from Claude and ChatGPT fed the three linked poems, then asked to create their own version based on the three poems. Resulting poem was then handwritten and fed into a OCR, but misrecognition of characters was greatly intensified.";
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: 100%;
+    font-family: "Averia Sans Libre", sans-serif;
+    font-size: 0.8em;
+    /* Give hover text its own distinct color, not affected by parent gradient */
+    background: none;
+    color: rgba(128, 118, 99, 0.6);
+    text-align: center;
+    padding-top: 10px;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Show the text on hover */
+.section-1-text:hover::after {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Show the text when active */
+.section-1-text:active::after {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Preserve existing link styling */
+.section-1-text a {
+    background: linear-gradient(
+        45deg,
+        #49adb3 0%,
+        #5bbec4 25%,
+        #6dcfd5 50%,
+        #5bbec4 75%,
+        #49adb3 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+    text-decoration: none;
+    animation: linkFloat 6s ease-in-out infinite;
+    display: inline-block;
+    padding: 0 4px;
+}
+
+/* Preserve hover effect for non-link text */
+.section-1-text:hover {
+    animation: textGlow 2s ease-in-out infinite;
+}
+
+		
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.section-1 a {
+    background: linear-gradient(
+        45deg,
+        #49adb3 0%,
+        #5bbec4 25%,
+        #6dcfd5 50%,
+        #5bbec4 75%,
+        #49adb3 100%
+    );
+	
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+    text-decoration: none;
+    animation: linkFloat 6s ease-in-out infinite;
+    display: inline-block;
+    padding: 0 4px;
+}
+
+.section-1 a:hover {
+    background: linear-gradient(
+        45deg,
+        #aa49b3 0%,
+        #bb5ac4 25%,
+        #cc6bd5 50%,
+        #bb5ac4 75%,
+        #aa49b3 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: linkPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes linkFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-3px);
+    }
+}
+
+@keyframes linkPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* Add this hover effect for non-link text */
+.section-1:hover {
+    animation: textGlow 2s ease-in-out infinite;
+}
+
+@keyframes textGlow {
+    0%, 100% {
+        filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.3));
+    }
+    50% {
+        filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+    }
+}
+
+.section-2 a{
+	color: #4d6299;
+	font-family: "Syne Mono", sans-serif;
+}
+
+.section-2 a:hover{
+	color: #4d995c;
+}
+
+.image-main{ position:absolute;
+pointer-events: none; /* Prevents the image from capturing clicks */
+}
+
+.image-mask { position:absolute;
+pointer-events: fill; }
+
+.image-mask-1{
+	z-index: 4;
+}
+
+.image-mask-2{
+	z-index: 5;
+}
+
+.image-mask-3{
+	z-index: 6;
+}
+
+
+.image-main-1{
+	z-index: 0;
+}
+
+
+.image-main-2{
+	z-index: 1;
+}
+	
+
+.image-main-3{
+	z-index: 2;
+}
+
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Of Another Shore</h1>
+    </header>
+    <div class="section section-1">
+	<div class="section-1-text">
+d!n0sa#ur t(..t dr1p,s t_h.u th#e c|0k&rsquo;s <a href="memorypalace.html" target="_blank">di_g3st!v3 t7r/ac%t;;</a><br>
+.00.. <a href="sandstoneschistandesite.html" target="_blank">p3t/r!fied</a> b0ot|terf|!es ch@w&amp;i.g (on m00|nbea~~ms~&mdash;<br>
+ur m3--s.ry le@ks p(r!m0rdi@l suP fRom 1!ts po&lt;ke+ts;;<br>
+th3 h?ouse g|ew tt:eeth annd sw@l(ow&amp;ed !+ts o!wn sh@d_0wz&mdash;<br>
+timme ma(c)!h1n*es |aY e66gs !n y3ste<a href="iwantedtothinkabouttimeiwanted.html" target="_blank">rda_y$ t!m_0r</a>0~~sk&yen;...
+</div>
+
+	</div>
+ <div class="section section-2">
+    <div class="map-container">
+        <a href="argence.html" class="node" style="top: 20%; left: 30%;" target="_blank">Oceanus Procellarum</a>
+        <a href="moonmilk.html" class="node" style="top: 70%; left: 40%;" target="_blank">Apollo Basin</a>
+        <a href="dreamwindowreturn.html" class="node" style="top: 40%; left: 70%;" target="_blank">Mare Orientale</a>
+    </div>
+</div>
+
+    <div class="section section-3"><div class="image-container">
+	<div class="image image-1"  style="top: 25%; left: 20%; transform: rotate(-50deg); width:400px;">
+    <img src="img/egg.png" style="width:400px;" class="image-main  image-main-1">
+	<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="400" height="274">
+	<a href="dungan.html" target="_blank" class="image-mask image-mask-1">
+        <path d="M0 0 C3.3 0 6.6 0 10 0 C10.33 0.99 10.66 1.98 11 3 C11.83660156 2.80148437 12.67320312 2.60296875 13.53515625 2.3984375 C17.49571397 1.94299569 20.65559522 2.58608167 24.4375 3.625 C25.13270752 3.80740234 25.82791504 3.98980469 26.54418945 4.17773438 C32.57938693 5.79931407 38.48929832 7.72935274 44.38671875 9.796875 C47.96770986 11.04119644 47.96770986 11.04119644 51.58203125 11.890625 C58.95542247 13.74450622 62.66364414 15.77350936 66.92578125 22.171875 C67.28027344 22.77515625 67.63476562 23.3784375 68 24 C71.29075996 23.62095792 71.29075996 23.62095792 74 22 C78.98287932 22.39081406 82.65022018 23.55987961 87 26 C87 26.66 87 27.32 87 28 C88.65 28.66 90.3 29.32 92 30 C92 30.66 92 31.32 92 32 C92.99 32 93.98 32 95 32 C95.33 31.01 95.66 30.02 96 29 C102.17520111 28.17663985 108.07224606 27.95660935 114.30078125 28.16015625 C117.12998828 27.99228724 118.53492081 27.29607256 121 26 C122.32 26 123.64 26 125 26 C126.40113616 27.95309888 127.73339467 29.95708818 129 32 C129.99 32.66 130.98 33.32 132 34 C132.51171875 36.3828125 132.51171875 36.3828125 132.6875 39.125 C132.75324219 40.03507812 132.81898438 40.94515625 132.88671875 41.8828125 C132.92410156 42.58148438 132.96148437 43.28015625 133 44 C132.36835938 44.28746094 131.73671875 44.57492188 131.0859375 44.87109375 C128.85593706 45.86772496 128.85593706 45.86772496 127.625 48.0625 C126.71852215 52.32294587 127.82949649 55.86722223 129 60 C133.50539046 61.04776522 135.8158896 60.87183886 140 59 C141.32 59 142.64 59 144 59 C146.05058366 63.34241245 146.05058366 63.34241245 145.84375 66.03125 C145 68 145 68 142.93359375 69.265625 C142.10988281 69.59046875 141.28617187 69.9153125 140.4375 70.25 C139.19806641 70.75273437 139.19806641 70.75273437 137.93359375 71.265625 C137.29550781 71.50796875 136.65742188 71.7503125 136 72 C136.62648438 72.45890625 137.25296875 72.9178125 137.8984375 73.390625 C138.71570313 74.00421875 139.53296875 74.6178125 140.375 75.25 C141.18710937 75.85328125 141.99921875 76.4565625 142.8359375 77.078125 C145.00576943 79.00512375 145.83024114 80.39994507 147 83 C148.175625 84.1446875 148.175625 84.1446875 149.375 85.3125 C151.85363678 87.85015194 153.1933768 90.21156591 154.8359375 93.31640625 C156.18084276 95.26155446 157.50891769 96.17930544 159.5 97.4375 C162.5084125 99.34962659 163.63013831 100.90455559 165 104.1875 C165.85119643 106.280531 165.85119643 106.280531 167 108 C169.33163378 108.67258667 171.6652039 109.33847444 174 110 C176.29963687 112.20399194 178.29026161 114.53519352 180.30078125 117.00390625 C181.85079867 119.08839224 181.85079867 119.08839224 184 120 C184 120.66 184 121.32 184 122 C184.66 122 185.32 122 186 122 C186.61488281 123.75376953 186.61488281 123.75376953 187.2421875 125.54296875 C187.78640215 127.09116559 188.3306761 128.63934157 188.875 130.1875 C189.14441406 130.95642578 189.41382813 131.72535156 189.69140625 132.51757812 C190.80295788 135.67601143 191.91560528 138.79946078 193.21484375 141.88671875 C194.56691327 145.52587104 193.18423766 148.44728703 192 152 C191.96956486 155.78265298 192.06692427 159.55444839 192.16015625 163.3359375 C192.00717484 166.83585368 191.40926678 168.85873358 190 172 C189.66695271 174.10368831 189.66695271 174.10368831 189.5625 176.125 C189 180 189 180 187.5625 182 C186 183 186 183 184 183 C183.773125 183.5775 183.54625 184.155 183.3125 184.75 C182 187 182 187 179.5625 188.9375 C174.63283371 192.90528018 173.06172182 198.20754345 171 204 C170.34 204 169.68 204 169 204 C169.33 204.66 169.66 205.32 170 206 C169.984375 207.98828125 169.984375 207.98828125 169.75 210.3125 C169.64945312 211.45138672 169.64945312 211.45138672 169.546875 212.61328125 C169 215 169 215 167.546875 217.39453125 C165.76828257 220.39029173 165.1800174 222.96681755 164.5 226.375 C162.97905249 233.39353904 160.8026431 238.88270458 157 245 C156.731875 245.70125 156.46375 246.4025 156.1875 247.125 C154.39424264 249.95645898 152.02876728 250.69347294 149 252 C148.23816406 252.37125 147.47632813 252.7425 146.69140625 253.125 C139.54608443 255.44800738 130.46547098 252.36081292 123.92578125 249.1328125 C119.86174542 246.74220319 116.69221854 243.7259853 113.4375 240.3125 C110.99887295 237.99893075 109.17508625 236.99788425 106 236 C106.20625 235.0925 106.4125 234.185 106.625 233.25 C107.01340927 229.88378631 106.98511244 228.67990179 105 226 C104.01 225.67 103.02 225.34 102 225 C102 222.69 102 220.38 102 218 C92.27038669 214.26326445 84.71129919 212.74065825 75 217 C74.01 217 73.02 217 72 217 C71.67 217.99 71.34 218.98 71 220 C65.68106298 223.86831783 60.29298622 225.02347947 53.890625 226.2890625 C50.82926792 226.86831593 50.82926792 226.86831593 48 229 C46.13614426 228.79667028 44.27254037 228.57790802 42.421875 228.27734375 C39.67501889 227.96278442 37.07409046 228.07426018 34.3125 228.1875 C27.53644393 228.24784656 21.15541658 226.8695755 15 224 C13.30859375 221.921875 13.30859375 221.921875 12 220 C9.1403994 218.82889551 9.1403994 218.82889551 6 219 C5.29875 219.5775 4.5975 220.155 3.875 220.75 C-1.05825231 224.61080616 -7.77016983 226.32632999 -14.015625 225.6953125 C-17.03742072 224.99128156 -19.88896635 224.09963041 -22.8125 223.0625 C-26.4116041 221.81989932 -29.8821703 220.75389305 -33.625 220.0625 C-40.12013387 218.69947008 -46.36582809 216.45125787 -50.125 210.8125 C-51 208 -51 208 -51 206 C-52.29093133 205.56033498 -53.58280836 205.12344701 -54.875 204.6875 C-55.69484375 204.4090625 -56.5146875 204.130625 -57.359375 203.84375 C-59.08351266 203.29284211 -60.82404568 202.79024292 -62.578125 202.34375 C-67.95467185 200.9583821 -71.28268248 199.32175661 -75.27734375 195.46875 C-77.15978177 193.86376883 -78.9198446 193.03136934 -81.1875 192.0625 C-85.67454634 190.00557547 -86.892417 187.37728776 -89 183 C-89.99 182.01 -89.99 182.01 -91 181 C-92.25870647 173.90547264 -92.25870647 173.90547264 -91.375 170.8125 C-90.7404192 168.80235608 -90.7404192 168.80235608 -92.5 166.625 C-94.41696574 163.27030996 -93.97576729 161.65912735 -93 158 C-92.67 157.34 -92.34 156.68 -92 156 C-91.08210681 147.05644116 -91.08210681 147.05644116 -93.9375 138.875 C-99.86307416 135.24709745 -104.72146342 132.91678654 -111.75 132.5 C-116.37814432 132.2155889 -118.80478442 131.59461753 -122 128 C-125.11450382 123.84732824 -125.11450382 123.84732824 -124.6875 120.6875 C-124.460625 120.130625 -124.23375 119.57375 -124 119 C-123.34 119 -122.68 119 -122 119 C-122.2165625 118.40574219 -122.433125 117.81148438 -122.65625 117.19921875 C-125.07299411 110.00492956 -126.94686547 102.54268609 -123.83984375 95.29296875 C-122.92750586 93.59790086 -121.99733729 91.91226961 -121.046875 90.23828125 C-119.63063859 87.21028326 -119.93334427 85.11791674 -121 82 C-121.66 82 -122.32 82 -123 82 C-125.09429461 78.59677126 -125.33706208 75.96047946 -125 72 C-124.34 71.01 -123.68 70.02 -123 69 C-122.34 69 -121.68 69 -121 69 C-120.938125 68.2575 -120.87625 67.515 -120.8125 66.75 C-119.71333744 63.0297575 -118.23561183 62.10228256 -115 60 C-111.37109375 59.2421875 -111.37109375 59.2421875 -107.4375 58.875 C-101.39719826 58.43888445 -101.39719826 58.43888445 -96 56 C-95.34 55.01 -94.68 54.02 -94 53 C-92.109375 52.8125 -92.109375 52.8125 -89.75 53 C-83.03754564 53.19598407 -76.34885949 52.21260643 -70 50 C-67.93063981 47.82126559 -67.06930895 46.18193599 -66 43.375 C-65 41 -65 41 -62 39 C-59.69536966 38.48238249 -57.39258703 38.11806762 -55.05859375 37.7578125 C-52.83550384 37.17323195 -52.83550384 37.17323195 -51.73828125 35.05078125 C-50.9362033 33.05393684 -50.9362033 33.05393684 -50.75 31.0625 C-49.50060765 27.62667104 -46.91173592 26.13923456 -44 24 C-43.34 24 -42.68 24 -42 24 C-42 23.34 -42 22.68 -42 22 C-41.175 21.608125 -40.35 21.21625 -39.5 20.8125 C-36.23602706 19.22476644 -36.23602706 19.22476644 -34.34765625 17.828125 C-30.01916296 14.75934639 -25.7461549 13.21540339 -20.625 11.9375 C-9.27785615 9.71815336 -9.27785615 9.71815336 -0.875 2.75 C-0.58625 1.8425 -0.2975 0.935 0 0 Z " fill="#FBFBFB" transform="translate(167,11)"/>
+    </a>
+	</svg>
+	</div>
+	<div class="image image-2" style="top: 10%; left: 35%; transform: rotate(60deg); width:400px;">
+    <img src="img/photograph.png" style="width:400px;"  class="image-main image-main-2"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="400" height="250">
+	<a href="inmanchuria.html" target="_blank" class="image-mask image-mask-2">
+        <path d="M0 0 C132 0 264 0 400 0 C400 82.5 400 165 400 250 C328.72 250 257.44 250 184 250 C184.33 249.34 184.66 248.68 185 248 C185.5863623 247.98018066 186.17272461 247.96036133 186.77685547 247.93994141 C193.06143259 247.72551945 199.34555705 247.50004812 205.6295166 247.26823425 C210.12100455 247.10314124 214.61264231 246.94352867 219.10449219 246.78857422 C224.6899341 246.5954918 230.27498638 246.39309858 235.85992432 246.18597412 C238.11319404 246.10390501 240.36657472 246.02482584 242.62005615 245.9487915 C245.83559182 245.83973306 249.05056421 245.7198266 252.265625 245.59765625 C253.22931 245.56739853 254.192995 245.53714081 255.18588257 245.50596619 C260.74861276 245.28189615 265.63697111 244.48604167 271 243 C273.8984375 242.83984375 273.8984375 242.83984375 276.375 242.9375 C279.82536604 243.12772843 279.82536604 243.12772843 283 242 C285.04498425 242.08780403 287.08744948 242.24241538 289.125 242.4375 C290.22070312 242.53933594 291.31640625 242.64117187 292.4453125 242.74609375 C293.28835938 242.82988281 294.13140625 242.91367188 295 243 C292.72460109 238.64706296 291.12032489 236.79637014 286.5 235 C283.29757646 233.69785754 281.86454976 232.86769977 279.3125 230.375 C277.39176588 225.4359694 278.57665992 221.9745736 280 217 C280.2578125 216.02675781 280.515625 215.05351562 280.78125 214.05078125 C281.28104052 212.17906577 281.79173492 210.31020644 282.31640625 208.4453125 C282.91511451 206.30364753 283.47092351 204.15967287 284 202 C284.66666667 199.33333333 285.33333333 196.66666667 286 194 C286.66 194 287.32 194 288 194 C287.57709963 192.03846209 287.13618382 190.08080125 286.6875 188.125 C286.44386719 187.03445312 286.20023437 185.94390625 285.94921875 184.8203125 C285.22097942 181.70557647 285.22097942 181.70557647 282 180 C280.0843168 175.62310792 279.77822273 171.86708616 279.875 167.125 C279.89304687 165.97257813 279.91109375 164.82015625 279.9296875 163.6328125 C279.96449219 162.32957031 279.96449219 162.32957031 280 161 C279.34 161 278.68 161 278 161 C277.61328125 159.87980469 277.2265625 158.75960937 276.828125 157.60546875 C276.30276016 156.13257091 275.77668095 154.65992774 275.25 153.1875 C274.99734375 152.44951172 274.7446875 151.71152344 274.484375 150.95117188 C272.50993967 145.48459812 272.50993967 145.48459812 268 142 C260.53708833 138.71061473 253.39018891 136.45862352 245.20703125 136.3359375 C242.53258334 135.92885339 241.67647031 135.0641882 240 133 C240.48533203 132.19369141 240.48533203 132.19369141 240.98046875 131.37109375 C242.22903051 128.46735051 242.30056538 126.21721659 242.3125 123.0625 C242.33763672 121.53302734 242.33763672 121.53302734 242.36328125 119.97265625 C241.95117251 116.60045463 240.83370283 114.81855602 239 112 C238.62875 110.205625 238.62875 110.205625 238.25 108.375 C237.29674271 104.79337321 237.29674271 104.79337321 234.125 103.0625 C227.71893851 100.91371627 220.60154267 100.85897251 214.4375 103.5625 C209.56530088 108.43469912 208.80673244 112.61580417 208.5625 119.3125 C208.68432876 125.16704852 209.61325132 132.61325132 214 137 C214.296875 139.375 214.296875 139.375 214 142 C212.390625 143.625 212.390625 143.625 210.25 145 C206.82672959 147.33459784 204.52968054 149.69195622 202 153 C201.34 153 200.68 153 200 153 C200 153.66 200 154.32 200 155 C199.34 155 198.68 155 198 155 C195.5978396 159.8043208 195.38877771 164.73103895 195 170 C194.01 169.67 193.02 169.34 192 169 C191.40234375 166.7421875 191.40234375 166.7421875 190.9375 163.875 C189.44017555 157.95480947 187.09618983 155.58072366 181.9609375 152.42578125 C177.7893492 150.4170349 173.55180163 149.08987924 169.078125 147.921875 C161.13052905 145.54163053 161.13052905 145.54163053 158.625 142.125 C157.40615138 137.98091468 157.70280028 135.65631606 159.5 131.6875 C160.2425 130.3571875 160.2425 130.3571875 161 129 C161.99 129 162.98 129 164 129 C164.33923576 126.64655194 164.67150534 124.2924516 165 121.9375 C165.14308594 120.95233398 165.14308594 120.95233398 165.2890625 119.94726562 C166.65422216 112.06937605 166.65422216 112.06937605 164.6875 104.63671875 C164.130625 103.99347656 163.57375 103.35023437 163 102.6875 C160 99.15277778 160 99.15277778 160 97 C151.82317687 93.68186888 144.62340654 93.10407374 136 95 C135.82984375 95.71285156 135.6596875 96.42570312 135.484375 97.16015625 C133.26337278 105.93784057 133.26337278 105.93784057 130.875 109.625 C127.92989619 114.92618686 128 120.03603476 128 126 C128.99 126.33 129.98 126.66 131 127 C132.82736646 131.02020622 133.46770499 133.80655718 132 138 C129.27504423 143.58503332 126.40477123 145.04389177 120.62304688 147.078125 C119.69556641 147.38234375 118.76808594 147.6865625 117.8125 148 C109.46287501 150.79703548 101.29170178 153.65213722 95.80859375 160.89453125 C93.26581847 166.30607865 91.44195455 170.54753077 91.91796875 176.55859375 C92.09155256 181.72477862 91.02972983 186.94906243 90 192 C89.67 192.33 89.34 192.66 89 193 C87.37840301 200.57589844 86.51174355 208.27732456 86 216 C85.92265625 216.7940625 85.8453125 217.588125 85.765625 218.40625 C85.38436427 224.59114627 87.26537176 228.16335031 91 233 C91.43054688 233.56976563 91.86109375 234.13953125 92.3046875 234.7265625 C94.58982963 237.60782866 96.93966276 239.95977517 100 242 C99.34099246 245.07536854 98.46132217 247.07735566 97 250 C64.99 250 32.98 250 0 250 C0 167.5 0 85 0 0 Z " fill="#FDFEFE" transform="translate(0,0)"/>
+    </a></svg>
+	</div>
+	<div class="image image-3" style="top: 25%; left: 40%; transform: rotate(5deg); width:300px;"> 
+	<img src="img/grains.png"style="width:300px;"   class="image-main image-main-3"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="300" height="407">
+    <a href="afterwemisrememberthegrains.html" target="_blank" class="image-mask image-mask-3">
+        <path d="M0 0 C6.6 0 13.2 0 20 0 C20 1.32 20 2.64 20 4 C21.98 4 23.96 4 26 4 C26 5.98 26 7.96 26 10 C26.99 10 27.98 10 29 10 C29 12.31 29 14.62 29 17 C30.32 17 31.64 17 33 17 C33 18.98 33 20.96 33 23 C35.97 23 38.94 23 42 23 C42 23.99 42 24.98 42 26 C45.3 26 48.6 26 52 26 C52 28.31 52 30.62 52 33 C53.32 33 54.64 33 56 33 C56 34.98 56 36.96 56 39 C56.99 39 57.98 39 59 39 C59 43.62 59 48.24 59 53 C59.99 53 60.98 53 62 53 C62 56.96 62 60.92 62 65 C63.98 65 65.96 65 68 65 C68 66.32 68 67.64 68 69 C73.61 69 79.22 69 85 69 C85 69.99 85 70.98 85 72 C86.98 72 88.96 72 91 72 C91 72.99 91 73.98 91 75 C92.32 75 93.64 75 95 75 C95 75.99 95 76.98 95 78 C97.97 78 100.94 78 104 78 C104 80.31 104 82.62 104 85 C105.32 85 106.64 85 108 85 C108 85.99 108 86.98 108 88 C109.98 88 111.96 88 114 88 C114 96.58 114 105.16 114 114 C113.01 114 112.02 114 111 114 C111 131.49 111 148.98 111 167 C118.59 167 126.18 167 134 167 C134 165.68 134 164.36 134 163 C134.99 163 135.98 163 137 163 C137 162.01 137 161.02 137 160 C140.3 160 143.6 160 147 160 C147 158.68 147 157.36 147 156 C149.97 156 152.94 156 156 156 C156 157.32 156 158.64 156 160 C158.31 160 160.62 160 163 160 C163 205.21 163 250.42 163 297 C162.01 297 161.02 297 160 297 C160 297.99 160 298.98 160 300 C159.01 300.33 158.02 300.66 157 301 C154.37774108 302.91626613 154.01461848 303.9322234 153.3125 307.1875 C153.209375 308.115625 153.10625 309.04375 153 310 C152.01 310 151.02 310 150 310 C150 312.97 150 315.94 150 319 C149.01 319 148.02 319 147 319 C147 320.32 147 321.64 147 323 C134.53187971 327.1560401 116.9753412 323.55027389 104 323 C104 322.01 104 321.02 104 320 C97.73 319.67 91.46 319.34 85 319 C85 318.34 85 317.68 85 317 C78.4 317 71.8 317 65 317 C65 317.66 65 318.32 65 319 C62.03 319.33 59.06 319.66 56 320 C56 320.99 56 321.98 56 323 C41.64133144 324.70357085 27.37144355 324.07021388 13 323 C13 322.01 13 321.02 13 320 C7.72 319.67 2.44 319.34 -3 319 C-3 318.34 -3 317.68 -3 317 C-4.32 317 -5.64 317 -7 317 C-7 317.66 -7 318.32 -7 319 C-10.96 319 -14.92 319 -19 319 C-19 320.32 -19 321.64 -19 323 C-22.63 323.33 -26.26 323.66 -30 324 C-30 324.66 -30 325.32 -30 326 C-34.07502794 326.07420211 -38.14979392 326.1286257 -42.2253418 326.16479492 C-43.61147919 326.17987397 -44.99756894 326.2003405 -46.38354492 326.22631836 C-48.37658146 326.26273716 -50.36996723 326.27813018 -52.36328125 326.29296875 C-53.56251221 326.3086792 -54.76174316 326.32438965 -55.99731445 326.34057617 C-59 326 -59 326 -60.85229492 324.66918945 C-62 323 -62 323 -63 320 C-64.91626613 317.37774108 -65.9322234 317.01461848 -69.1875 316.3125 C-70.115625 316.209375 -71.04375 316.10625 -72 316 C-72 315.01 -72 314.02 -72 313 C-80.58 313 -89.16 313 -98 313 C-98 313.99 -98 314.98 -98 316 C-101.3 316.33 -104.6 316.66 -108 317 C-108 317.66 -108 318.32 -108 319 C-108.99 319 -109.98 319 -111 319 C-111 318.34 -111 317.68 -111 317 C-114.3 316.67 -117.6 316.34 -121 316 C-121 315.01 -121 314.02 -121 313 C-121.99 313 -122.98 313 -124 313 C-124 312.01 -124 311.02 -124 310 C-124.99 310 -125.98 310 -127 310 C-128.0176403 304.98391475 -128.11856434 300.21391694 -128.0625 295.125 C-128.05798828 294.34125 -128.05347656 293.5575 -128.04882812 292.75 C-128.03714093 290.83329986 -128.01920908 288.91663952 -128 287 C-128.66 287 -129.32 287 -130 287 C-130.33 284.03 -130.66 281.06 -131 278 C-131.99 277.67 -132.98 277.34 -134 277 C-134 275.02 -134 273.04 -134 271 C-134.99 271 -135.98 271 -137 271 C-137 239.65 -137 208.3 -137 176 C-136.01 176 -135.02 176 -134 176 C-134 175.01 -134 174.02 -134 173 C-132.68 173 -131.36 173 -130 173 C-130 171.02 -130 169.04 -130 167 C-129.01 167 -128.02 167 -127 167 C-127 164.69 -127 162.38 -127 160 C-126.01 160 -125.02 160 -124 160 C-124 160.99 -124 161.98 -124 163 C-123.01 163 -122.02 163 -121 163 C-121 164.32 -121 165.64 -121 167 C-119.68 167 -118.36 167 -117 167 C-117 167.99 -117 168.98 -117 170 C-116.01 170 -115.02 170 -114 170 C-114 170.99 -114 171.98 -114 173 C-106.41 173 -98.82 173 -91 173 C-91 172.01 -91 171.02 -91 170 C-90.01 170 -89.02 170 -88 170 C-88 169.01 -88 168.02 -88 167 C-87.01 167 -86.02 167 -85 167 C-85 165.68 -85 164.36 -85 163 C-80.71 163 -76.42 163 -72 163 C-72 159.04 -72 155.08 -72 151 C-73.32 151 -74.64 151 -76 151 C-76 147.37 -76 143.74 -76 140 C-74.68 140 -73.36 140 -72 140 C-72 132.74 -72 125.48 -72 118 C-73.32 118 -74.64 118 -76 118 C-76.125 110.25 -76.125 110.25 -75 108 C-76.32 108 -77.64 108 -79 108 C-79 103.71 -79 99.42 -79 95 C-77.68 95 -76.36 95 -75 95 C-75 94.01 -75 93.02 -75 92 C-73.02 92 -71.04 92 -69 92 C-69 86.39 -69 80.78 -69 75 C-67.68 75 -66.36 75 -65 75 C-65 73.02 -65 71.04 -65 69 C-64.01 69 -63.02 69 -62 69 C-62 67.68 -62 66.36 -62 65 C-59.69 65 -57.38 65 -55 65 C-55 64.01 -55 63.02 -55 62 C-48.73 62 -42.46 62 -36 62 C-36 62.99 -36 63.98 -36 65 C-35.01 65 -34.02 65 -33 65 C-32.67 65.99 -32.34 66.98 -32 68 C-31.34 68.33 -30.68 68.66 -30 69 C-30 66.69 -30 64.38 -30 62 C-30.99 62 -31.98 62 -33 62 C-33 60.02 -33 58.04 -33 56 C-33.99 56 -34.98 56 -36 56 C-36.495 52.535 -36.495 52.535 -37 49 C-37.66 49 -38.32 49 -39 49 C-39 48.01 -39 47.02 -39 46 C-38.34 46 -37.68 46 -37 46 C-36.505 41.05 -36.505 41.05 -36 36 C-35.01 36 -34.02 36 -33 36 C-33 35.01 -33 34.02 -33 33 C-31.02 32.67 -29.04 32.34 -27 32 C-27 31.01 -27 30.02 -27 29 C-24.69 29 -22.38 29 -20 29 C-20 28.01 -20 27.02 -20 26 C-16.7 26 -13.4 26 -10 26 C-10 20.72 -10 15.44 -10 10 C-9.01 10 -8.02 10 -7 10 C-7 9.01 -7 8.02 -7 7 C-5.68 7 -4.36 7 -3 7 C-3 6.01 -3 5.02 -3 4 C-2.01 4 -1.02 4 0 4 C0 2.68 0 1.36 0 0 Z " fill="#FCFCFC" transform="translate(137,81)"/>
+<path d="M0 0 C4.62 0 9.24 0 14 0 C14 1.32 14 2.64 14 4 C15.98 4 17.96 4 20 4 C20 4.99 20 5.98 20 7 C20.99 7 21.98 7 23 7 C23 8.98 23 10.96 23 13 C23.99 13 24.98 13 26 13 C26 19.6 26 26.2 26 33 C23.525 33.495 23.525 33.495 21 34 C21 35.98 21 37.96 21 40 C19.68 40 18.36 40 17 40 C17 40.99 17 41.98 17 43 C15.02 43 13.04 43 11 43 C11 43.99 11 44.98 11 46 C6.05 46 1.1 46 -4 46 C-4 45.01 -4 44.02 -4 43 C-5.98 43 -7.96 43 -10 43 C-10 42.01 -10 41.02 -10 40 C-10.99 40 -11.98 40 -13 40 C-13 38.02 -13 36.04 -13 34 C-14.32 34 -15.64 34 -17 34 C-17 28.06 -17 22.12 -17 16 C-15.68 16 -14.36 16 -13 16 C-13 14.02 -13 12.04 -13 10 C-12.01 10 -11.02 10 -10 10 C-10 8.68 -10 7.36 -10 6 C-8.02 6 -6.04 6 -4 6 C-4 5.01 -4 4.02 -4 3 C-2.68 3 -1.36 3 0 3 C0 2.01 0 1.02 0 0 Z " transform="translate(104,55)"/>
+<path d="M0 0 C3.3 0 6.6 0 10 0 C10 0.99 10 1.98 10 3 C10.99 3 11.98 3 13 3 C13 4.32 13 5.64 13 7 C13.99 7 14.98 7 16 7 C16.495 7.99 16.495 7.99 17 9 C17.99 9.33 18.98 9.66 20 10 C20.84234934 14.38556481 21.13478857 18.5364113 21.125 23 C21.12886719 24.7634375 21.12886719 24.7634375 21.1328125 26.5625 C21.00783333 29.79725504 20.6098924 32.82468717 20 36 C17.69 36 15.38 36 13 36 C13 36.99 13 37.98 13 39 C11.02 39 9.04 39 7 39 C7 40.32 7 41.64 7 43 C2.38 43 -2.24 43 -7 43 C-7 42.01 -7 41.02 -7 40 C-9.31 40 -11.62 40 -14 40 C-14 39.01 -14 38.02 -14 37 C-14.99 37 -15.98 37 -17 37 C-17 34.69 -17 32.38 -17 30 C-17.99 30 -18.98 30 -20 30 C-20 25.38 -20 20.76 -20 16 C-19.01 16 -18.02 16 -17 16 C-17 13.69 -17 11.38 -17 9 C-16.01 9 -15.02 9 -14 9 C-14 8.01 -14 7.02 -14 6 C-13.01 6 -12.02 6 -11 6 C-11 4.68 -11 3.36 -11 2 C-7.37 2 -3.74 2 0 2 C0 1.34 0 0.68 0 0 Z "transform="translate(163,0)"/>
+<path d="M0 0 C6.6 0.33 13.2 0.66 20 1 C20 1.99 20 2.98 20 4 C22.31 4 24.62 4 27 4 C28.1577506 7.47325181 28.06866652 10.36067448 28 14 C28.99 14 29.98 14 31 14 C31 18.62 31 23.24 31 28 C30.01 28 29.02 28 28 28 C27.67 30.97 27.34 33.94 27 37 C26.01 37.33 25.02 37.66 24 38 C23.505 38.99 23.505 38.99 23 40 C21.02 40 19.04 40 17 40 C17 41.32 17 42.64 17 44 C12.71 44 8.42 44 4 44 C4 42.68 4 41.36 4 40 C3.01 40 2.02 40 1 40 C1 39.34 1 38.68 1 38 C-0.32 38 -1.64 38 -3 38 C-3 36.68 -3 35.36 -3 34 C-4.32 34 -5.64 34 -7 34 C-7 32.02 -7 30.04 -7 28 C-7.99 28 -8.98 28 -10 28 C-10 23.38 -10 18.76 -10 14 C-9.01 14 -8.02 14 -7 14 C-7 11.69 -7 9.38 -7 7 C-5.68 7 -4.36 7 -3 7 C-3 6.01 -3 5.02 -3 4 C-2.01 4 -1.02 4 0 4 C0 2.68 0 1.36 0 0 Z " transform="translate(195,51)"/>
+    </a></svg>
+	</div>
+</div>
+</div>
+    <button id="leftBtn" class="nav-btn">←</button>
+    <button id="rightBtn" class="nav-btn">→</button>
+	<div class="menu">
+	 <div class="text">
+	 <div class="item">
+    <a href="memorypalace.html" class="title-link" target="_blank">memory palace</a>
+</div>
+<div class="item">
+    <a href="sandstoneschistandesite.html" class="title-link" target="_blank">sandstone, schist, andesite</a>
+</div>
+<div class="item">
+    <a href="argence.html" class="title-link" target="_blank">argence</a>
+</div>
+<div class="item">
+    <a href="iwantedtothinkabouttimeiwanted.html" class="title-link" target="_blank">i wanted to think about time, i wanted</a>
+</div>
+
+<div class="item">
+    <a href="horizons/threefloorhome.html" class="title-link" target="_blank">three floor home</a>
+</div>
+
+<div class="item">
+    <a href="dreamwindowreturn.html" class="title-link" target="_blank">dream window return</a>
+</div>
+
+<div class="item">
+    <a href="horizons/fourbedroomgarden.html" class="title-link" target="_blank">four bedroom garden</a>
+</div>
+
+<div class="item">
+    <a href="horizons/fivehorizonintersection.html" class="title-link" target="_blank">five horizon intersection</a>
+</div>
+
+<div class="item">
+    <a href="nightbus.html" class="title-link" target="_blank">night bus</a>
+</div>
+
+<div class="item">
+    <a href="ediacaranhotline.html" class="title-link" target="_blank">ediacaran hotline</a>
+</div>
+
+<div class="item">
+    <a href="bigboat.html" class="title-link" target="_blank">big boat</a>
+</div>
+
+<div class="item">
+    <a href="sanddollarexchange.html" class="title-link" target="_blank">sand dollar exchange</a>
+</div>
+
+<div class="item">
+    <a href="afterwemisrememberthegrains.html" class="title-link" target="_blank">after we misremember the grains</a>
+</div>
+
+<div class="item">
+    <a href="inmanchuria.html" class="title-link" target="_blank">in Manchuria</a>
+</div>
+
+<div class="item">
+    <a href="quoineconomics.html" class="title-link" target="_blank">quoin (economics)</a>
+</div>
+
+<div class="item">
+    <a href="now.html" class="title-link" target="_blank">now</a>
+</div>
+
+<div class="item">
+    <a href="dungan.html" class="title-link" target="_blank">dungan</a>
+</div>
+
+<div class="item">
+    <a href="whisperhouse.html" class="title-link" target="_blank">whisper house</a>
+</div>
+
+<div class="item">
+    <a href="thingsmyparentsthoughtwheniwasunborn.html" class="title-link" target="_blank">things my parents thought when i was unborn</a>
+</div>
+
+<div class="item">
+    <a href="moonmilk.html" class="title-link" target="_blank">moonmilk</a>
+    <a href="https://youtu.be/27LNfCEGIzA" class="notes-link" target="_blank">video</a>
+</div>
+
+<div class="item">
+    <a href="escarpmentpinks.html" class="title-link" target="_blank">escarpment pinks</a>
+</div>
+
+</div>
+	
+	</div>
+<script>// Initialize current section and images
+let currentSection = Math.floor(Math.random() * 3) + 1;
+const backgroundImages = {
+    1: 'url("path/to/image1.jpg")',
+    2: 'url("img/pinkearth.jpg")',
+    3: 'url("path/to/image3.jpg")'
+};
+
+const blendModes = {
+    1: 'normal',
+    2: 'normal',
+    3: 'normal'
+};
+
+
+// Get DOM elements
+const sections = document.querySelectorAll('.section');
+const leftBtn = document.getElementById('leftBtn');
+const rightBtn = document.getElementById('rightBtn');
+const header = document.querySelector('header');
+const menu = document.querySelector('.menu');
+
+// Set up initial state
+function initializePage() {
+    sections.forEach(section => section.style.display = 'none');
+    sections[currentSection - 1].style.display = 'block';
+    document.body.style.backgroundImage = backgroundImages[currentSection];
+	document.body.style.backgroundBlendMode = blendModes[currentSection];
+    
+    // Add transitions
+    document.body.style.transition = 'background-image 0.5s ease-in-out';
+    sections.forEach(section => {
+        section.style.transition = 'opacity 0.5s ease-in-out';
+        section.style.opacity = '1';
+    });
+    
+    // Initialize menu state
+    menu.style.visibility = 'hidden';
+    menu.style.opacity = '0';
+}
+
+// Navigation function
+function navigateSection(direction) {
+    sections[currentSection - 1].style.opacity = '0';
+    
+    setTimeout(() => {
+        sections[currentSection - 1].style.display = 'none';
+        
+        currentSection = direction === 'next' 
+            ? (currentSection % 3) + 1 
+            : (currentSection - 2 + 3) % 3 + 1;
+        
+        sections[currentSection - 1].style.display = 'block';
+        document.body.style.backgroundImage = backgroundImages[currentSection];
+        
+        setTimeout(() => {
+            sections[currentSection - 1].style.opacity = '1';
+        }, 50);
+    }, 500);
+}
+
+// Event Listeners
+leftBtn.addEventListener('click', () => navigateSection('prev'));
+rightBtn.addEventListener('click', () => navigateSection('next'));
+
+// Keyboard navigation
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') navigateSection('prev');
+    if (e.key === 'ArrowRight') navigateSection('next');
+});
+
+// Touch navigation
+let touchStartX = 0;
+let touchEndX = 0;
+
+document.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+});
+
+document.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    const diff = touchStartX - touchEndX;
+    
+    if (Math.abs(diff) > 50) { // Minimum swipe distance
+        if (diff > 0) navigateSection('next');
+        else navigateSection('prev');
+    }
+});
+
+// Menu toggle with improved visibility handling
+header.addEventListener('click', () => {
+    if (menu.style.visibility === 'hidden') {
+        menu.style.visibility = 'visible';
+        menu.style.opacity = '1';
+        
+        // Hide other elements
+        sections.forEach(section => section.style.visibility = 'hidden');
+        leftBtn.style.visibility = 'hidden';
+        rightBtn.style.visibility = 'hidden';
+    } else {
+        menu.style.opacity = '0';
+        setTimeout(() => {
+            menu.style.visibility = 'hidden';
+            
+            // Show other elements
+            sections.forEach(section => section.style.visibility = 'visible');
+            leftBtn.style.visibility = 'visible';
+            rightBtn.style.visibility = 'visible';
+        }, 300); // Match transition duration
+    }
+});
+
+// Initialize page on load
+window.addEventListener('load', initializePage);
+
+// Add necessary CSS
+const style = document.createElement('style');
+style.textContent = `
+
+    body {
+        margin: 0;
+        min-height: 100vh;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+		overflow: hidden;
+    }
+    .section {
+        opacity: 0;
+        position: absolute;
+        top: 100px; /* Adjust based on header height */
+        left: 0;
+        right: 0;
+        overflow: hidden;
+        transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+    }
+    
+    .menu {
+        position: relative;
+        top: 120px; /* Adjust based on header height */
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: var(--bg-color);
+		height: 80%;
+        z-index: 1000;
+        visibility: hidden;
+		overflow-y: scroll;
+        opacity: 0.2;
+        transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    }
+    
+    .nav-btn {
+        position: fixed;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 500;
+        visibility: visible;
+        transition: visibility 0.3s ease-in-out;
+    }
+    
+    #leftBtn {
+        left: 20px;
+    }
+    
+    #rightBtn {
+        right: 20px;
+    }
+    
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1500;
+        cursor: pointer;
+    }
+`;
+document.head.appendChild(style);
+</script>
+
+</body>
+</html>

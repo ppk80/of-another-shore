@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Of Another Shore - Art Manual</title>
+    <link href="https://fonts.googleapis.com/css2?family=Averia+Sans+Libre:wght@300;400;700&display=swap" rel="stylesheet">
+      <style>
+        body {
+            font-family: 'Averia Sans Libre', cursive;
+            background-color: #fef8f2;
+            color: #5c4742;
+            display: flex;
+            margin: 0;
+        }
+        
+        .sidebar {
+            width: 250px;
+            background: linear-gradient(180deg, #f9e4c8, #d4eaf7);
+            padding: 20px;
+            height: 100vh;
+            position: fixed;
+            overflow-y: auto;
+            border-right: 2px solid #c8b6a6;
+        }
+        
+        .sidebar h2 {
+            color: #c75c5c;
+        }
+        
+        .sidebar a {
+            display: block;
+            color: #5c4742;
+            padding: 10px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+        
+        .sidebar a:hover {
+            background-color: #e7c8a0;
+        }
+        
+        .content {
+            margin-left: 270px;
+            padding: 40px;
+            max-width: 800px;
+        }
+        
+        .section {
+            display: none;
+        }
+        
+        .section.active {
+            display: block;
+        }
+        
+        .notes {
+            background-color: #f4e6f0;
+            padding: 15px;
+            border-left: 4px solid #a670b8;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Art Manual</h2>
+        <a href="#" onclick="showSection('intro')">Introduction & Navigation</a>
+        <a href="#" onclick="showSection('components')">Notes for Individual PIeces</a>
+
+        <a href="#" onclick="showSection('conceptual')">Conceptual Framework</a>
+        <a href="#" onclick="showSection('archival')">Archival & Future Adaptations</a>
+    </div>
+    
+    <div class="content">
+        <div id="intro" class="section active">
+            <h1>Of Another Shore</h1>
+            <p><i>Manual</i></p>
+            <p>This work can be accessed here:</p>
+            <p><a href="https://ppk80.github.io/of-another-shore/" target="_blank">ppk80.github.io/of-another-shore/</a></p>
+            <p>“Of Another Shore” is an intermedia poetic suite. It is a collection of intermedia pieces that can stand alone, but relate to each other in a poetic manner. The pieces also link to each other hypertextually, and is one of the main navigation mechanics of this suite.</p>
+            <p>It begins with a carousel of three screens, and the page randomly directs to one of the three screens every time it is visited. Each screen has three clickable features that link out into pieces, which then contain links to the other pieces, which can link to each other. A comprehensive list of each piece can be viewed by clicking the header “Of Another Shore.”</p>
+            <p>Lightly underlined words and phrases can be hovered or clicked for a popover, usually of a translation.</p>
+			<p><strong>Version 0.5, tested on:</strong></p>
+<ul>
+    <li>🦊 Firefox 136</li>
+    <li>🌐 Chrome 134</li>
+    <li>📱 Mobile: Usually Responsive on Android & iOS</li>
+</ul>
+        </div>
+        
+        <div id="components" class="section">
+            <h1>Notes for Individual Pieces</h1>
+			
+			            
+            <div class="notes">
+                <h3>memory palace</h3>
+                <p>This is an expandable and collapsible poem, with new poem sections that expand or collapse from the ellipsis buttons.</p>
+            </div>
+            
+            <div class="notes">
+                <h3>i wanted to think about time; i wanted</h3>
+                <p>These are four draggable boxes of text, and can be rearranged on the page, affecting the flow of reading.</p>
+            </div>
+            
+            <div class="notes">
+                <h3>night bus</h3>
+                <p>A song with whatever can be transcribed as lyrics provided.</p>
+            </div>
+            
+            <div class="notes">
+                <h3>moonmilk</h3>
+                <p>A poem where the line cuts and lengths are changed by navigating left or right.</p>
+            </div>			
+        </div>
+		
+		        <div id="conceptual" class="section">
+            <h1>Conceptual Framework</h1>
+            <p><i>Of Another Shore</i> is a work of fragmentation, immersion, and multiplicity. It resists a singular, centralized experience, instead embracing a decentralized, archipelagic structure where pieces interconnect yet stand alone. The work explores how disparate elements can form a poetic whole, scattering experiences while maintaining an underlying coherence. It embraces the digital space as its site of occurence, which resists traditional sites of exhibition such as the gallery, the theater, the publication. It opts instead for a freely accessible and hopefully cross-platform experience that can be accessed at will and experienced however the user likes.</p>
+            <p>The project is influenced by intertextual, intermedia, transmedia, and conceptual works such as Mark Danielewski’s <i>House of Leaves</i> and Poe’s <i>Haunted</i>, which create expanded narratives through separate but interconnected media as well as the interactive websites in the 00s. Similarly, <i>Of Another Shore</i> operates across electronic literature, experimental music, digital-traditional art hybrids, and conceptual art, forming an ecosystem rather than a linear experience.</p>
+            <p>Thematically, the work explores liminality—between death and birth, between histories and geographies, between memory and speculation. It layers personal, familial, national, and geological histories, recognizing their interconnectedness. By juxtaposing individual experience with vast temporal scales, it asks how human presence and remembrance intersect with deep time.</p>
+            <p>Language and translation play an inherent role, not as a primary theme but as a necessity of its multilingual and interdisciplinary nature. Words shift across English, Japanese, Hiligaynon, Tagalog, and other languages, resisting full accessibility while acknowledging the fractured ways in which language and identity function. This extends to the use of specialized languages, such as scientific terminology, which highlight the limits of translatability.</p>
+            <p>Ultimately, <i>Of Another Shore</i> is not about fragmentation as loss but as multiplication—of perspectives, histories, and interactions. The digital space allows for this multiplicity, enabling nonlinear engagement, interactive elements, and an evolving ecology of media that continuously reshapes itself through the act of reading, listening, experiencing, and interacting.</p>
+        </div>
+<div id="archival" class="section">
+    <h1>Archival & Future Adaptations</h1>
+    <p><i>Of Another Shore</i> embraces both <strong>ephemerality and continuity</strong>, acknowledging that some of its elements will naturally degrade while others will persist and evolve.</p>
+
+    <h2>Ephemeral & Degrading Elements</h2>
+    <p>Many parts of <i>Of Another Shore</i> exist as <strong>performative experiences</strong>, which are inherently ephemeral. Future iterations may include <strong>site-specific performances, interactive events, or temporary installations</strong> that are meant to be experienced within a limited time frame. In the digital realm, <strong>technological obsolescence</strong> can occur. While the work is primarily built using <strong>HTML, CSS, and JavaScript</strong>, ensuring its longevity, some components—particularly those reliant on <strong>external data sources such as weather API keys</strong>—may eventually stop functioning as online infrastructures shift. The work does not actively resist degradation but instead allows for the possibility of digital impermanence.</p>
+
+    <h2>Preservation Strategies</h2>
+    <p>To <strong>extend accessibility</strong> and provide reference points for future audiences, <i>Of Another Shore</i> can be preserved through:</p>
+    <ul>
+        <li><strong>A downloadable and offline version</strong> for local access, though some works will retain dependencies on live data.</li>
+        <li><strong>Video walkthroughs</strong>, which offer the most effective way to document interactive and performative aspects.</li>
+        <li><strong>Textual descriptions</strong> to provide additional context and conceptual framing.</li>
+        <li><strong>A maintained digital repository</strong>, with updates hosted at <a href="https://xyhtamura.github.io" target="_blank">xyhtamura.github.io</a> for as long as possible.</li>
+    </ul>
+
+    <h2>Future Evolutions & Adaptations</h2>
+    <p>The work is designed to be <strong>iterative</strong> rather than fixed. It will continue to evolve, with future versions (e.g., <i>Of Another Shore 2.0</i>) incorporating <strong>new pieces, reworkings, or technological changes</strong>. Some elements may be expanded, altered, or entirely transformed.</p>
+    
+    <p>Beyond its digital form, <i>Of Another Shore</i> is inherently <strong>multi-incarnational</strong>—certain works may find expression as <strong>installations, printed books, live performances, or other formats</strong>. These adaptations will function both as <strong>extensions of the work and autonomous pieces</strong> in their own right, which is how poetic suites function.</p>
+
+    <h2>Longevity & Open Access</h2>
+    <p>Should the original platform become inaccessible due to <strong>technological changes</strong>, the work <strong>may be recreated</strong> in new web formats or virtual environments. To encourage ongoing engagement and reinterpretation, <i>Of Another Shore</i> will be released under <strong>Creative Commons 4.0</strong>, allowing future artists, researchers, and audiences to <strong>remix, extend, and transform</strong> the work.</p>
+</div>
+		
+    </div>
+    
+    <script>
+        function showSection(id) {
+            document.querySelectorAll('.section').forEach(section => section.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+        }
+        
+        function toggleExpand(element) {
+            let content = element.nextElementSibling;
+            content.style.display = content.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+</body>
+</html>
