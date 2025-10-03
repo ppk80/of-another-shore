@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The World</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #f3e7e9, #e3eeff);
+      color: #4a4e69;
+      font-family: 'Georgia', serif;
+      box-sizing: border-box;
+    }
+    h1 {
+      font-size: 2.5em;
+      font-weight: normal;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+      color: #22223b;
+    }
+    canvas {
+      border: 2px solid #9a8c98;
+      background-color: rgba(255, 255, 255, 0.5);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 15px 25px;
+      margin-top: 25px;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 1.1em;
+      cursor: pointer;
+      background-color: #f2e9e4;
+      color: #4a4e69;
+      border: 1px solid #c9ada7;
+      border-radius: 5px;
+      font-family: 'Georgia', serif;
+      transition: all 0.2s ease;
+    }
+    button:hover { background-color: #c9ada7; color: #fff; }
+
+    #timeStopButton { font-family: 'MS Mincho', 'Hiragino Mincho ProN', serif; }
+
+    .slider-container { display: flex; align-items: center; gap: 10px; }
+    input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 120px;
+      height: 8px;
+      background: #dcd0d6;
+      border-radius: 5px;
+      outline: none;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      background: #9a8c98;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    input[type="range"]::-moz-range-thumb {
+      width: 20px;
+      height: 20px;
+      background: #9a8c98;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>The World</h1>
+  <canvas id="simulationCanvas"></canvas>
+  <div class="controls">
+    <button id="resetButton">Reset</button>
+    <div class="slider-container">
+      <label for="speedSlider">Speed:</label>
+      <input type="range" id="speedSlider" min="0.1" max="2.5" step="0.1" value="0.1" />
+      <span id="speedValue">0.1</span>
+    </div>
+    <div class="slider-container">
+      <label for="magSlider">Pull:</label>
+      <input type="range" id="magSlider" min="-0.05" max="0.05" step="0.001" value="0.025" />
+      <span id="magValue">0.025</span>
+    </div>
+    <button id="timeStopButton">ザ・ワールド</button>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('simulationCanvas');
+    const ctx = canvas.getContext('2d');
+    const timeStopButton = document.getElementById('timeStopButton');
+    const resetButton = document.getElementById('resetButton');
+    const magSlider = document.getElementById('magSlider');
+    const magValue = document.getElementById('magValue');
+    const speedSlider = document.getElementById('speedSlider');
+    const speedValue = document.getElementById('speedValue');
+
+    // --- Simulation Parameters (now with initial-condition controls) ---
+    const FILIPINO_ALPHABET = [
+      'a','b','c','d','e','f','g','h','i','j','k','l','m',
+      'n','ñ','ng','o','p','q','r','s','t','u','v','w','x','y','z'
+    ];
+    const PARTICLE_COUNT = FILIPINO_ALPHABET.length;
+    const PARTICLE_RADIUS = 8;
+    const FONT_SIZE = 20;
+    const TIME_STOP_DURATION = 3000;
+    const DRAW_COLOR = '#4a4e69';
+
+    // Initial-conditions tuning
+    const OFFSET_SCALE = 0.02;        // position jitter as a fraction of central radius
+    const BASE_SPEED = 2.0;           // base speed for all particles
+    const ANGLE_JITTER = 0.03;        // radians (~4.6°) of angle variation
+    const SPEED_JITTER_SCALE = 0.05;  // ±5% speed variation
+
+    let MAGNETIC_STRENGTH = 0.025;
+    let animationSpeed = 0.1;
+    let isPaused = false;
+    let particles = [];
+
+    canvas.width = 800;
+    canvas.height = 600;
+
+    const centralObstacle = {
+      x: canvas.width / 2,
+      y: canvas.height / 2,
+      radius: 75
+    };
+
+    class Particle {
+      constructor() {
+        // Base cluster location: just above the circle, proportional to radius
+        const baseX = centralObstacle.x;
+        const baseY = centralObstacle.y - centralObstacle.radius - centralObstacle.radius * 0.25;
+
+        // Position jitter scales with obstacle radius (resolution independent)
+        const tinyOffset = centralObstacle.radius * OFFSET_SCALE; // e.g., 0.06 * 75 = 4.5px
+        this.x = baseX + (Math.random() - 0.5) * 2 * tinyOffset; // ±tinyOffset
+        this.y = baseY + (Math.random() - 0.5) * 2 * tinyOffset;
+
+        // Velocity: same general direction (downwards) but with small angle & speed variation
+        const baseAngle = Math.PI / 2; // downward
+        const angle = baseAngle + (Math.random() - 0.5) * 2 * ANGLE_JITTER; // ±ANGLE_JITTER
+        const speed = BASE_SPEED * (1 + (Math.random() - 0.5) * 2 * SPEED_JITTER_SCALE); // ±5%
+        this.vx = Math.cos(angle) * speed;
+        this.vy = Math.sin(angle) * speed;
+
+        this.charIndex = 0;
+      }
+
+      draw() {
+        ctx.fillStyle = DRAW_COLOR;
+        ctx.font = `${FONT_SIZE}px 'Georgia', serif`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(FILIPINO_ALPHABET[this.charIndex], this.x, this.y);
+      }
+
+      update() {
+        const scaledMagStrength = MAGNETIC_STRENGTH * animationSpeed;
+        const newVx = this.vx * Math.cos(scaledMagStrength) - this.vy * Math.sin(scaledMagStrength);
+        const newVy = this.vx * Math.sin(scaledMagStrength) + this.vy * Math.cos(scaledMagStrength);
+        this.vx = newVx;
+        this.vy = newVy;
+
+        this.x += this.vx * animationSpeed;
+        this.y += this.vy * animationSpeed;
+
+        this.handleCollisions();
+      }
+
+      handleCollisions() {
+        let collided = false;
+        if (this.x < PARTICLE_RADIUS || this.x > canvas.width - PARTICLE_RADIUS) {
+          this.vx *= -1;
+          collided = true;
+        }
+        if (this.y < PARTICLE_RADIUS || this.y > canvas.height - PARTICLE_RADIUS) {
+          this.vy *= -1;
+          collided = true;
+        }
+        const dx = this.x - centralObstacle.x;
+        const dy = this.y - centralObstacle.y;
+        const distance = Math.hypot(dx, dy);
+        if (distance < centralObstacle.radius + PARTICLE_RADIUS) {
+          collided = true;
+          const normalX = dx / distance;
+          const normalY = dy / distance;
+          const dotProduct = this.vx * normalX + this.vy * normalY;
+          this.vx -= 2 * dotProduct * normalX;
+          this.vy -= 2 * dotProduct * normalY;
+          // Move particle outside to prevent sticking
+          this.x = centralObstacle.x + (centralObstacle.radius + PARTICLE_RADIUS) * normalX;
+          this.y = centralObstacle.y + (centralObstacle.radius + PARTICLE_RADIUS) * normalY;
+        }
+        if (collided) {
+          this.charIndex = (this.charIndex + 1) % FILIPINO_ALPHABET.length;
+        }
+      }
+    }
+
+    function init() {
+      particles = [];
+      for (let i = 0; i < PARTICLE_COUNT; i++) {
+        particles.push(new Particle());
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.beginPath();
+      ctx.arc(centralObstacle.x, centralObstacle.y, centralObstacle.radius, 0, Math.PI * 2);
+      ctx.strokeStyle = DRAW_COLOR;
+      ctx.stroke();
+      for (const particle of particles) {
+        if (!isPaused) {
+          particle.update();
+        }
+        particle.draw();
+      }
+      requestAnimationFrame(animate);
+    }
+
+    timeStopButton.addEventListener('click', () => {
+      if (!isPaused) {
+        isPaused = true;
+        setTimeout(() => { isPaused = false; }, TIME_STOP_DURATION);
+      }
+    });
+
+    resetButton.addEventListener('click', init);
+
+    magSlider.addEventListener('input', (e) => {
+      MAGNETIC_STRENGTH = parseFloat(e.target.value);
+      magValue.textContent = MAGNETIC_STRENGTH.toFixed(3);
+    });
+
+    speedSlider.addEventListener('input', (e) => {
+      animationSpeed = parseFloat(e.target.value);
+      speedValue.textContent = animationSpeed.toFixed(1);
+    });
+
+    init();
+    animate();
+  </script>
+</body>
+</html>
